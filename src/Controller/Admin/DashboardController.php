@@ -24,12 +24,9 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new() 
-            ->setTitle('App')
+            ->setTitle('App');
 
-            ->setLocales([
-                'en' => '🇬🇧 English',
-                'pl' => '🇵🇱 Polski'
-            ]);
+           
     }
 
     public function configureMenuItems(): iterable
