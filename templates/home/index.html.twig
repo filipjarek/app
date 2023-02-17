@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div>
+	<nav class="relative px-4 py-4 flex items-center ">
+		
+		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/neske/symfony/app/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/neske/symfony/app/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+			<li><a class="text-sm text-emerald-600 font-bold">Home</a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"</a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a></li>
+		</ul>
+		
+		<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}"><strong>{{ app.user.username }}</strong> | Logout</a>
+		
+	</nav>
 </div>
+
 {% endblock %}

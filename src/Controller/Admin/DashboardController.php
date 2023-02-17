@@ -17,23 +17,20 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         return $this->render('admin/dashboard.html.twig');
-
-        
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new() 
             ->setTitle('App');
-
-           
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('Users', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Students', 'fas fa-list', Student::class);
         yield MenuItem::linkToCrud('Teachers', 'fas fa-list', Teacher::class);
-        yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
+       
     }
 }
