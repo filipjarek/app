@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Teachers{% endblock %}
+{% block title %}Students{% endblock %}
 
 {% block body %}
   
@@ -14,11 +14,11 @@
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-emerald-600 font-bold">Teachers</a></li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_teacher') }}">Teachers</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}">Students</a></li>
+			<li><a class="text-sm text-emerald-600 font-bold">Students</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
@@ -46,23 +46,23 @@
                     Fullname
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Subject
+                    Class
                 </th>
             </tr>
         </thead>
         <tbody>
-        {%  for teacher in teachers %}
+        {%  for student in students %}
          
             <tr class="bg-slate-100 border-b  hover:bg-gray-50">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {{ teacher.id}} 
+                    {{ student.id}} 
                 </th>
                 <td class="px-6 py-4">
-                    {{ teacher.fullname}}            
+                    {{ student.fullname}}            
                 </td>
                 <td class="px-6 py-4">
                     <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-emerald-300 text-gray-600">
-                    {{ teacher.schoolsubject}} 
+                    {{ student.class}} 
                     </span>
                 </td>   
             </tr>
