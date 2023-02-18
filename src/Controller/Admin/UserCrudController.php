@@ -9,7 +9,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-
 class UserCrudController extends AbstractCrudController
 {
    
@@ -28,7 +27,6 @@ class UserCrudController extends AbstractCrudController
             ->setChoices( array_combine( $roles, $roles ) )
             ->renderAsBadges()
             ->allowMultipleChoices();
-        
     }
         
 }

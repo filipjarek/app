@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Teacher;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class TeacherCrudController extends AbstractCrudController
@@ -12,14 +14,13 @@ class TeacherCrudController extends AbstractCrudController
         return Teacher::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        yield TextField::new('fullname');
+        $school_subject = ['mathematics', 'history', 'computer science ', 'physics', 'history'];
+        yield ChoiceField::new( 'school_subject' )
+            ->setChoices( array_combine( $school_subject, $school_subject ) )
+            ->renderAsBadges();
+            
     }
-    */
 }

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teachers{% endblock %}
+
+{% block body %}
+  
+<div>
+	<nav class="relative px-4 py-4 flex items-center ">
+		
+		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+			<li class="text-gray-300">
+				|
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_home') }}">Home</a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-emerald-600 font-bold">Teachers</a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">Students</a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a></li>
+		</ul>
+		
+		<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}"><strong>{{ app.user.username }}</strong> | Logout</a>
+		
+	</nav>
+
+	<div class="py-3">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
+            <div class="bg-slate-400 overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="p-6 sm:px-20 bg-gray-100  border border-gray-300 ">
+				 <div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
+        
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Fullname
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Subject
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {%  for teacher in teachers %}
+         
+            <tr class="bg-slate-100 border-b  hover:bg-gray-50">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    {{ teacher.id}} 
+                </th>
+                <td class="px-6 py-4">
+                    {{ teacher.fullname}}            
+                </td>
+                <td class="px-6 py-4">
+                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-emerald-300 text-gray-600">
+                    {{ teacher.schoolsubject}} 
+                    </span>
+                </td>   
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

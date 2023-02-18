@@ -16,6 +16,9 @@ class Teacher
     #[ORM\Column(length: 255)]
     private ?string $fullname = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $school_subject = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Teacher
     public function setFullname(string $fullname): self
     {
         $this->fullname = $fullname;
+
+        return $this;
+    }
+
+    public function getSchoolSubject(): ?string
+    {
+        return $this->school_subject;
+    }
+
+    public function setSchoolSubject(string $school_subject): self
+    {
+        $this->school_subject = $school_subject;
 
         return $this;
     }
