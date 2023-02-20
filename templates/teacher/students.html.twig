@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Teachers{% endblock %}
+{% block title %}Students{% endblock %}
 
 {% block body %}
   
@@ -14,26 +14,25 @@
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-emerald-600 font-bold">Teachers</a></li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_teacher') }}">Teachers</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}">Students</a></li>
+			<li><a class="text-sm text-emerald-600 font-bold">Students</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
 			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a></li>
 		</ul>
 		
-		<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400"><span>You are logged as </span><strong>{{ app.user.firstname }} {{ app.user.lastname }} | </strong> <a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}">Logout</a>
-    
+		<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}"><strong>{{ app.user.username }}</strong> | Logout</a>
 		
 	</nav>
 
 	<div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
             <div class="bg-slate-400 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 sm:px-20 bg-gray-100  border border-gray-300 "><div class="text-base text-gray-400"><span><strong>Your subjects:{{ (app.user.id) }} </strong> </span></div>
+                <div class="p-6 sm:px-20 bg-gray-100  border border-gray-300 ">
 				 <div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
         
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -41,25 +40,31 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-200">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Teach Subjects
+                    Id
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    In classrooms
+                    Fullname
                 </th>
-               
+                <th scope="col" class="px-6 py-3">
+                    Class
+                </th>
             </tr>
         </thead>
         <tbody>
-        {%  for teachertask in teachertasks %}
+        {%  for student in students %}
          
             <tr class="bg-slate-100 border-b  hover:bg-gray-50">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {{ teachertask.subject }}     
+                    {{ student.id}} 
                 </th>
                 <td class="px-6 py-4">
-                  {{ teachertask.classroom }}            
+                    {{ student.fullname}}            
                 </td>
-                 
+                <td class="px-6 py-4">
+                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-emerald-300 text-gray-600">
+                    {{ student.class}} 
+                    </span>
+                </td>   
             </tr>
         {% endfor %}
         </tbody>

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -104,6 +106,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     */
     private $plainPassword;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TeacherTask::class)]
+    private Collection $teacherTasks;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lastname = null;
+
+    public function __construct()
+    {
+        $this->teacherTasks = new ArrayCollection();
+    }
+
     /**
     * @return string
     */
@@ -111,4 +127,63 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
     return $this->plainPassword;
     }
+
+    /**
+     * @return Collection<int, TeacherTask>
+     */
+    public function getTeacherTasks(): Collection
+    {
+        return $this->teacherTasks;
+    }
+
+    public function addTeacherTask(TeacherTask $teacherTask): self
+    {
+        if (!$this->teacherTasks->contains($teacherTask)) {
+            $this->teacherTasks->add($teacherTask);
+            $teacherTask->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTeacherTask(TeacherTask $teacherTask): self
+    {
+        if ($this->teacherTasks->removeElement($teacherTask)) {
+            // set the owning side to null (unless already changed)
+            if ($teacherTask->getUser() === $this) {
+                $teacherTask->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+       
+
+    
+     
+     
 }
