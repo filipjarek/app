@@ -18,11 +18,11 @@
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_teachers') }}">Teachers</a></li>
+			<li><a class="text-sm text-emerald-600 font-bold">Teachers</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-emerald-600 font-bold">Students</a></li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}">Students</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
@@ -45,17 +45,17 @@
 		
 		<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400"><span>You are logged as </span><strong>{{ app.user.firstname }} {{ app.user.lastname }} | </strong> <a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}">Logout</a>
     
+		
 	</nav>
 
 	<div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
             <div class="bg-slate-400 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-700 border border-gray-300  dark:border-gray-700"><div class="text-base text-gray-400"><span><strong>Student list:</strong> </span></div>
-        
+                <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-700 border border-gray-300  dark:border-gray-700"><div class="text-base text-gray-400"><span><strong>Teacher list: </strong> </span></div>
+    
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

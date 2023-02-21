@@ -4,6 +4,7 @@ module.exports = {
     './templates/**/*.html.twig',
     './node_modules/tw-elements/dist/js/**/*.js'
   ],
+  darkMode: 'class',
   theme: {
     extend: {},
   },

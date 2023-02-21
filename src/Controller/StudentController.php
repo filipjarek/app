@@ -10,11 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StudentController extends AbstractController
 {
-    #[Route('/student', name: 'app_student')]
-    public function index(Environment $twig, StudentRepository $studentRepository): Response
+    #[Route('/students', name: 'app_student')]
+    public function shoStudents(Environment $twig, StudentRepository $studentRepository): Response
     {
         return new Response($twig->render('student/index.html.twig', [
             'students' => $studentRepository->findAll(),
         ]));
-    }     
+    }      
 }

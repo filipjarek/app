@@ -24,6 +24,20 @@
 			</li>
 			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a></li>
 		</ul>
+
+        <div x-data="{'darkMode': false}"x-init="darkMode = JSON.parse(localStorage.getItem('darkMode')); $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))">
+                    <div :class="{'dark': darkMode === true}"> 
+                        <div class="flex justify-end items-center space-x-2 lg:ml-auto lg:mr-2 py-2 px-6 text-sm">
+                            
+                <span class="text-sm text-gray-800 dark:text-gray-400">Light</span>
+                    <label for="toggle" class="w-9 h05 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out dark:bg-gray-700">
+                        <div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out dark:translate-x-3"> </div>             
+                    </label>
+                <span class="text-sm text-gray-400 dark:text-gray-50">Dark</span>
+                    <input id="toggle" type="checkbox" class="hidden" :value="darkMode" @change="darkMode = !darkMode" />
+                        </div>
+                    </div>
+                </div>
 		
 		<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}"><strong>{{ app.user.username }}</strong> | Logout</a>
 		
@@ -35,45 +49,10 @@
                 <div class="p-6 sm:px-20 bg-gray-100  border border-gray-300 ">
 				 <div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
         
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Id
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Fullname
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Class
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        {%  for student in students %}
-         
-            <tr class="bg-slate-100 border-b  hover:bg-gray-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {{ student.id}} 
-                </th>
-                <td class="px-6 py-4">
-                    {{ student.fullname}}            
-                </td>
-                <td class="px-6 py-4">
-                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-emerald-300 text-gray-600">
-                    {{ student.class}} 
-                    </span>
-                </td>   
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
