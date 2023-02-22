@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Students{% endblock %}
+{% block title %}Show class{% endblock %}
 
 {% block body %}
   
@@ -14,7 +14,7 @@
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_subjects') }}">Subjects</a></li>
+			<li><a class="text-sm text-emerald-600 font-bold">Subjects</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
@@ -22,7 +22,7 @@
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-emerald-600 font-bold">Students</a></li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}">Students</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
@@ -66,14 +66,17 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Classroom
-                </th>               
+                </th>    
+                 <th scope="col" class="px-6 py-3">
+                    Action
+                </th>            
             </tr>
         </thead>
         <tbody>
 			{%  for student in students %}
             <tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-					{{ student.id }}
+                    {{ student.id }}
                 </th>
                 <td class="px-6 py-4">
                     {{ student.lastname }} {{ student.firstname }}
@@ -102,6 +105,9 @@
 						</span>
 						{% endif %} 
 
+                </td>
+                <td class="px-6 py-4">
+                    <a href="/subject/class/student/{{ student.id }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
                 </td>
             </tr>
 			{% endfor %}

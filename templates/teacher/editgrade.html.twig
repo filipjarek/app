@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Teachers{% endblock %}
+{% form_theme form 'tailwind_2_layout.html.twig' %}	
+{% block title %}Edit grade{% endblock %}
 
 {% block body %}
   
 <div>
 	<nav class="relative px-4 py-4 flex items-center ">
 		
-		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
 			<li class="text-gray-300">
 				|
 			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_home') }}">Home</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_subjects') }}">Subjects</a></li>
+			<li><a class="text-sm text-emerald-600 font-bold">Subjects</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-emerald-600 font-bold">Teachers</a></li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_teachers') }}">Teachers</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
@@ -45,54 +45,67 @@
 		
 		<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400"><span>You are logged as </span><strong>{{ app.user.firstname }} {{ app.user.lastname }} | </strong> <a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}">Logout</a>
     
-		
 	</nav>
 
 	<div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
             <div class="bg-slate-400 overflow-hidden shadow-xl">
-                <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700"><div class="text-base text-gray-400"><span><strong>Teacher list: </strong> </span></div>
+                <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700"><div class="text-base text-gray-400"><span><strong>Add new grade</strong> </span></div>
 					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
                   		<div class="container mt-4">
+ 
+ 	<div class="container">
 
-<div class="relative overflow-x-auto shadow-md">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Id
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Fullname
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Subject
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-		
-			<tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-					{{ app.user.id }}
-                </th>
-                <td class="px-6 py-4">
-                    {{ app.user.firstname }} {{ app.user.lastname }}
-                </td>
-                <td class="px-6 py-4">
-                {%  for teachertask in teachertasks %}
-					{{ teachertask.subject }}
-                {% endfor %}
-                </td>
-            </tr>
-            
-        </tbody>
-    </table>
-</div>						
+		{{ form_start(form) }}
+
+			
+				<label class="block uppercase tracking-wide text-gray-400 dark:text-gray-400 text-xs font-bold mb-2">
+					{{ form_label(form.student) }}
+				</label>
+				<div class="relative">
+				<div class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+					{{ form_widget(form.student) }}
+				</div>
+     			</div>
+				<div class="form-error">
+					{{ form_errors(form.student) }}
+				</div>
+				<label class="block uppercase tracking-wide text-gray-400 dark:text-gray-400 text-xs font-bold mb-2">
+					{{ form_label(form.subject) }}
+				</label>
+				<div class="relative">
+				<div class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+					{{ form_widget(form.subject) }}
+				</div>
+     			</div>
+				<div class="form-error">
+					{{ form_errors(form.subject) }}
+				</div>
+				<label class="block uppercase tracking-wide text-gray-400 dark:text-gray-400 text-xs font-bold mb-2">
+					{{ form_label(form.grade) }}
+				</label>
+				<div class="relative">
+				<div class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+					{{ form_widget(form.grade) }}
+				</div>
+     			</div>
+				<div class="form-error">
+					{{ form_errors(form.grade) }}
+				</div>
+			
+
+			<div class="form-group ">
+				{{ form_row(form.submit) }}
+			</div>
+
+	</div>
+		{{ form_end(form) }}
+</div>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

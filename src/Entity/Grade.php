@@ -21,7 +21,7 @@ class Grade
     #[ORM\ManyToOne(inversedBy: 'grade')]
     private ?Subject $subject = null;
 
-    #[ORM\OneToMany(mappedBy: 'grade', targetEntity: Task::class)]
+    #[ORM\OneToMany(mappedBy: 'grade', cascade: ['remove'] , targetEntity: Task::class)]
     private Collection $tasks;
 
     public function __construct()
@@ -86,5 +86,10 @@ class Grade
         }
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->name;
+        
     }
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Teachers{% endblock %}
+{% block title %}Subjects{% endblock %}
 
 {% block body %}
   
@@ -14,7 +14,7 @@
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-emerald-600 font-bold">Subject</a></li>
+			<li><a class="text-sm text-emerald-600 font-bold">Subjects</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
@@ -47,10 +47,87 @@
     
 	</nav>
 
+        {% for message in app.flashes('success') %}
+            <div class="alert bg-green-100 dark:bg-green-300 mx-auto sm:px-6 lg:px-6 py-5 px-6 mb-3 text-base text-g-700 flex items-center w-3/4 alert-dismissible fade show" role="alert">
+                <strong class="mr-1">Success! </strong> {{ message }}
+                <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-green-900 border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-green-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}  
+
 	<div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
-            <div class="bg-slate-400 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-700 border border-gray-300  dark:border-gray-700"><div class="text-base text-gray-400"><span><strong>Your subjects: </strong> </span></div>
+            <div class="bg-slate-400 overflow-hidden shadow-xl">
+                <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700"><div class="text-base text-gray-400"><span><strong>Your subjects: </strong> </span></div>
+                    <div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
+                  	    <div class="container mt-4">
+
+<div class="relative overflow-x-auto shadow-md">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Classroom
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Subject
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Teacher
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+			{%  for teachertask in teachertasks %}
+            <tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    
+                        {% if teachertask.classroom == '4' %}
+   						<span class="text-xs inline-block py-1 px-2.5 rounded-md leading-none text-center whitespace-nowrap align-baseline font-bold bg-cyan-400 dark:bg-cyan-700">
+                     		{{ teachertask.classroom }}     
+                    	</span>
+							{% elseif teachertask.classroom == '5' %}
+  						<span class="text-xs inline-block py-1 px-2.5 rounded-md leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-400 dark:bg-blue-700">
+                     		{{ teachertask.classroom }}
+						</span>
+							{% elseif teachertask.classroom == '6' %}
+  						<span class="text-xs inline-block py-1 px-2.5 rounded-md leading-none text-center whitespace-nowrap align-baseline font-bold bg-violet-400 dark:bg-violet-700">     
+							{{ teachertask.classroom }}
+						</span>
+							{% elseif teachertask.classroom == '7' %}
+  						<span class="text-xs inline-block py-1 px-2.5 rounded-md leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-400 dark:bg-fuchsia-700">     
+							{{ teachertask.classroom }}
+						</span>
+							{% elseif teachertask.classroom == '8' %}
+  						<span class="text-xs inline-block py-1 px-2.5 rounded-md leading-none text-center whitespace-nowrap align-baseline font-bold bg-rose-400 dark:bg-rose-700">     
+							{{ teachertask.classroom }}
+						</span>
+						{% endif %} 
+
+                </th>
+                <td class="px-6 py-4">
+                    {{ teachertask.subject }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ app.user.lastname }} {{ app.user.firstname }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="/subject/class/{{ teachertask.classroom.id }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                </td>
+            </tr>
+			{% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
 
                 </div>
             </div>

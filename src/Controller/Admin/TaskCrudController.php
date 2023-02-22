@@ -2,24 +2,23 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Student;
+use App\Entity\Task;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class StudentCrudController extends AbstractCrudController
+class TaskCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Student::class;
+        return Task::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id')->setDisabled();
-        yield TextField::new('firstname');
-        yield TextField::new('lastname');
-        yield AssociationField::new('classroom');
+        yield AssociationField::new('student');
+        yield AssociationField::new('subject');
+        yield AssociationField::new('grade');
     }
 }
