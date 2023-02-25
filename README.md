@@ -12,7 +12,12 @@
     PHP 8.2.0
     TailwindCSS 3.2.6
     
+    
 ## Features
+List the ready features here:
+- User login and registration
+- App theme selection (light/dark)
+- Creating, editing and deleting: students, classrooms, subjects, grades
 
 ## Screenshots
 
