@@ -6,6 +6,7 @@ use App\Repository\StudentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 class Student
@@ -15,22 +16,18 @@ class Student
     #[ORM\Column]
     private ?int $id = null;
 
-    
-
-    
-
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Task::class)]
     private Collection $tasks;
-
-   
 
     #[ORM\ManyToOne(inversedBy: 'students')]
     private ?Classroom $classroom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $firstname = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $lastname = null;
 
     public function __construct()
@@ -42,10 +39,6 @@ class Student
     {
         return $this->id;
     }
-
-   
-
-   
 
     /**
      * @return Collection<int, Task>
@@ -76,8 +69,6 @@ class Student
 
         return $this;
     }
-
-   
 
     public function getClassroom(): ?Classroom
     {
@@ -116,8 +107,7 @@ class Student
     }
 
     public function __toString() {
-        return $this->firstname. ' ' . $this->lastname;
+        return $this->firstname. ' ' . $this->lastname. ' ' . $this->classroom;
         
     }
-
 }

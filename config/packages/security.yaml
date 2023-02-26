@@ -19,6 +19,8 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
+                default_target_path: show_subjects
+                always_use_default_target_path: true    
             provider: app_user_provider
             logout:
                 path: app_logout
@@ -37,8 +39,7 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/home, roles: ROLE_USER }
-         - { path: ^/teacher, roles: ROLE_USER }
-         - { path: ^/student, roles: ROLE_USER }
+
 when@test:
     security:
         password_hashers:

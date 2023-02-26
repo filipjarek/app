@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
@@ -21,6 +22,10 @@ class Task
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     private ?Grade $grade = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(min: 2, max: 255)]
+    private ?string $description = null;
 
     public function getId(): ?int
     {
@@ -59,6 +64,18 @@ class Task
     public function setGrade(?Grade $grade): self
     {
         $this->grade = $grade;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

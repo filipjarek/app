@@ -8,21 +8,23 @@
 	<nav class="relative px-4 py-4 flex items-center">
 		
 		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+			{% if is_granted('ROLE_ADMIN') %}
 			<li class="text-gray-300">
 				|
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_home') }}">Home</a></li>
-			<li class="text-gray-300">
-				|
-			</li>
-			<li><a class="text-sm text-emerald-600 font-bold">Subjects</a></li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('admin') }}"><i class="fa-solid fa-user-secret"></i> Admin</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_teachers') }}">Teachers</a></li>
+            {% endif %}
+			<li><a class="text-sm text-emerald-600 font-bold"><i class="fa-solid fa-book"></i> Subjects</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}">Students</a></li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_teachers') }}"><i class="fa-solid fa-chalkboard-user"></i> Teachers</a></li>
+			<li class="text-gray-300">
+				|
+			</li>
+			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}"><i class="fa-solid fa-users"></i> Students</a></li>
 			<li class="text-gray-300">
 				|
 			</li>
@@ -31,19 +33,19 @@
 
 		<div x-data="{'darkMode': false}"x-init="darkMode = JSON.parse(localStorage.getItem('darkMode')); $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))">
                     <div :class="{'dark': darkMode === true}"> 
-                        <div class="flex justify-end items-center space-x-2 lg:ml-auto lg:mr-2 py-2 px-6 text-sm">
+                        <div class="flex justify-end items-center space-x-2 lg:ml-auto lg:mr-2 py-2 px-12 text-sm">
                             
-                <span class="text-sm text-gray-800 dark:text-gray-400">Light</span>
+                <span class="text-sm text-gray-800 dark:text-gray-400"><i class="fa-solid fa-sun"></i></span>
                     <label for="toggle" class="w-9 h05 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out dark:bg-gray-700">
                         <div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out dark:translate-x-3"> </div>             
                     </label>
-                <span class="text-sm text-gray-400 dark:text-gray-50">Dark</span>
+                <span class="text-sm text-gray-400 dark:text-gray-50"><i class="fa-solid fa-moon"></i></span>
                     <input id="toggle" type="checkbox" class="hidden" :value="darkMode" @change="darkMode = !darkMode" />
                         </div>
                     </div>
                 </div>
 		
-		<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400"><span>You are logged as </span><strong>{{ app.user.firstname }} {{ app.user.lastname }} | </strong> <a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}">Logout</a>
+		<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400"><span>You are logged as </span><strong>{{ app.user.firstname }} {{ app.user.lastname }} | </strong> <a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
     
 	</nav>
 
@@ -51,7 +53,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
             <div class="bg-slate-400 overflow-hidden shadow-xl">
                 <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700"><div class="text-base text-gray-600 dark:text-gray-300"><span><strong>Student: {{ student.lastname }} {{ student.firstname }}</strong> </span></div>
-					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 "><a href="{{ path('add_grade', { id: student.id }) }}"><button type="button" class="relative flex justify-center w-1/12 rounded-md border border-transparent bg-emerald-600 py-1 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none">Add grade</button></a>
+					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 "><a href="{{ path('add_grade', { id: student.id }) }}"><button type="button" class="relative flex justify-center w-1/8 rounded-md border border-transparent bg-emerald-600 py-1 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none">Add grade</button></a>
                   		<div class="container mt-4">
 
 <div class="relative overflow-x-auto shadow-md">
@@ -61,7 +63,10 @@
                 <th scope="col" class="px-6 py-3">
                     Grades
                 </th>
-                 <th scope="col" class="px-6 py-3">
+				<th scope="col" class="px-6 py-3 text-center">
+                    Description
+                </th>   
+                <th scope="col" class="px-6 py-3 text-center">
                     Action
                 </th>              
             </tr>
@@ -98,9 +103,12 @@
 						{% endif %} 
 							
                 </th>
-                <td class="px-6 py-4">
-					<a href="{{ path('edit_grade', { id: task.id }) }}"><button type="button" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Edit</button></a>
-					<a href="{{ path('delete_grade', { id: task.id }) }}"><button type="button" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button></a>
+				 <td class="px-6 py-4 text-center">
+					{{ task.description }}
+				</td>
+                <td class="px-6 py-4 text-center">
+					<a href="{{ path('edit_grade', { id: task.id }) }}"><button type="button" class="font-medium text-yellow-600 dark:text-yellow-500"><i class="fa-solid fa-pen-to-square"></i> Edit</button></a> |
+					<a href="{{ path('delete_grade', { id: task.id }) }}"><button type="button" class="font-medium text-red-600 dark:text-red-500"><i class="fa-solid fa-trash"></i> Delete</button></a>
 				</td>
                 {% endfor %}
             </tr>

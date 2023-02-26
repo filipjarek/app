@@ -6,7 +6,6 @@ use App\Entity\Task;
 use Twig\Environment;
 use App\Form\TaskFormType;
 use App\Repository\TaskRepository;
-use App\Repository\GradeRepository;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TeacherTaskRepository;
@@ -23,7 +22,7 @@ class TeacherController extends AbstractController
     private $em;
 
     public function __construct(TeacherTaskRepository $teachertaskRepository, StudentRepository $studentRepository, 
-    TaskRepository $taskRepository, GradeRepository $gradeRepository, EntityManagerInterface $em)
+    TaskRepository $taskRepository, EntityManagerInterface $em)
     {
         $this->teachertaskRepository = $teachertaskRepository;
         $this->studentRepository = $studentRepository;
@@ -92,6 +91,7 @@ class TeacherController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager ,$id): Response
     {   
         $student = $this->studentRepository->find($id);   
+        $teachertask = $this->teachertaskRepository->find($id);
         $task = new Task();
         $form = $this->createForm(TaskFormType::class, $task);
         $form->handleRequest($request);
@@ -110,6 +110,7 @@ class TeacherController extends AbstractController
 
         return $this->render('teacher/creategrade.html.twig', [
             'student' => $student,
+            'teachertask' => $teachertask,
             'form' => $form->createView()
         ]);
     }
