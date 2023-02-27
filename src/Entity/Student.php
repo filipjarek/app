@@ -106,8 +106,8 @@ class Student
         return $this;
     }
 
-    public function __toString() {
-        return $this->firstname. ' ' . $this->lastname. ' ' . $this->classroom;
-        
+    public function __toString()
+    {
+        return $this->firstname . ' ' . $this->lastname . ' ' . $this->classroom;
     }
 }

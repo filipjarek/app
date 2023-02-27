@@ -21,9 +21,12 @@ class TeacherController extends AbstractController
     private $taskRepository;
     private $em;
 
-    public function __construct(TeacherTaskRepository $teachertaskRepository, StudentRepository $studentRepository, 
-    TaskRepository $taskRepository, EntityManagerInterface $em)
-    {
+    public function __construct(
+        TeacherTaskRepository $teachertaskRepository,
+        StudentRepository $studentRepository,
+        TaskRepository $taskRepository,
+        EntityManagerInterface $em
+    ) {
         $this->teachertaskRepository = $teachertaskRepository;
         $this->studentRepository = $studentRepository;
         $this->taskRepository = $taskRepository;
@@ -34,63 +37,64 @@ class TeacherController extends AbstractController
     public function index(Environment $twig, TeacherTaskRepository $teachertaskRepository): Response
     {
         return new Response($twig->render('teacher/show.html.twig', [
-            'teachertasks' => $teachertaskRepository->findBy(['user' => $this->getUser()])
+            'teachertasks' => $teachertaskRepository->findAll()
         ]));
-    }    
+    }
 
     #[Route('/subject', name: 'show_subjects', methods: ['GET'])]
-    public function showSubjects(Environment $twig, TeacherTaskRepository $teachertaskRepository, ): Response
+    public function showSubjects(Environment $twig, TeacherTaskRepository $teachertaskRepository,): Response
     {
         return new Response($twig->render('teacher/index.html.twig', [
             'teachertasks' => $teachertaskRepository->findBy(['user' => $this->getUser()])
         ]));
-    }   
+    }
 
     #[Route('/subject/class/{id}', name: 'show_class', methods: ['GET'])]
     public function showClassroom($id): Response
-    {   
+    {
         $teachertasks = $this->teachertaskRepository->find($id);
-        $students = $this->studentRepository->findBy(['classroom' => $id]);    
-        $tasks = $this->taskRepository->findBy(['student' => $id]); 
+        $students = $this->studentRepository->findBy(['classroom' => $id]);
+        $tasks = $this->taskRepository->findBy(['student' => $id]);
 
         return $this->render('teacher/showclass.html.twig', [
-            'teachertasks' => $teachertasks,    
+            'teachertasks' => $teachertasks,
             'students' => $students,
             'tasks' => $tasks
         ]);
-    }  
+    }
 
     #[Route('/subject/class/student/{id}', name: 'show_student', methods: ['GET'])]
     public function showStudent($id): Response
-    {   
-        $student = $this->studentRepository->find($id);   
-        $tasks = $this->taskRepository->findBy(['student' => $id]); 
+    {
+        $student = $this->studentRepository->find($id);
+        $tasks = $this->taskRepository->findBy(['student' => $id]);
 
-        return $this->render('teacher/showstudent.html.twig', [   
+        return $this->render('teacher/showstudent.html.twig', [
             'student' => $student,
             'tasks' => $tasks
         ]);
-    }  
+    }
 
     #[Route('/subject/class/student/grade/delete/{id}', name: 'delete_grade', methods: ['GET', 'DELETE'])]
     public function delete($id): Response
-    {   
-        $task = $this->taskRepository->find($id); 
+    {
+        $task = $this->taskRepository->find($id);
         $this->em->remove($task);
         $this->em->flush();
 
         $this->addFlash(
-            'success', 'Successfully deleted grade'
+            'success',
+            'Successfully deleted grade'
         );
-        
+
         return $this->redirectToRoute('show_subjects');
-    } 
+    }
 
     #[Route('/subject/class/student/{id}/grade/add', name: 'add_grade')]
-   
-    public function new(Request $request, EntityManagerInterface $entityManager ,$id): Response
-    {   
-        $student = $this->studentRepository->find($id);   
+
+    public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
+    {
+        $student = $this->studentRepository->find($id);
         $teachertask = $this->teachertaskRepository->find($id);
         $task = new Task();
         $form = $this->createForm(TaskFormType::class, $task);
@@ -100,9 +104,10 @@ class TeacherController extends AbstractController
             $form->getData();
             $entityManager->persist($task);
             $entityManager->flush();
-           
+
             $this->addFlash(
-                'success', "Successfully added grade"
+                'success',
+                "Successfully added grade"
             );
 
             return $this->redirectToRoute('show_subjects');
@@ -115,8 +120,8 @@ class TeacherController extends AbstractController
         ]);
     }
 
-    #[Route('/subject/class/student/grade/edit/{id}', name: 'edit_grade', methods: ['GET', 'POST'] )]
-    public function edit(Task $task, Request $request, EntityManagerInterface $entityManager): Response 
+    #[Route('/subject/class/student/grade/edit/{id}', name: 'edit_grade', methods: ['GET', 'POST'])]
+    public function edit(Task $task, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TaskFormType::class, $task);
         $form->handleRequest($request);
@@ -126,7 +131,8 @@ class TeacherController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash(
-                'success', "Successfully edited grade"
+                'success',
+                "Successfully edited grade"
             );
 
             return $this->redirectToRoute('show_subjects');

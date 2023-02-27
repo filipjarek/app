@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType; 
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -22,14 +22,14 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                 ],
-                
+
             ])
-           
+
             ->add('lastname', TextType::class, [
                 'label_attr' => [
                     'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                 ],
-               
+
             ])
             ->add('username', TextType::class, [
                 'label_attr' => [
@@ -68,8 +68,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -17,8 +17,8 @@ class ClassroomCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->setDisabled();
+        yield IdField::new('id')->onlyOnIndex();
         yield TextField::new('name');
-        yield AssociationField::new( 'subject' );
+        yield AssociationField::new('subject');
     }
 }

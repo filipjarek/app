@@ -1,113 +1,164 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create grade{% endblock %}
+{% block title %}Create grade
+{% endblock %}
 
 {% block body %}
-  
-<div>
-	<nav class="relative px-4 py-4 flex items-center">
-		
-		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			{% if is_granted('ROLE_ADMIN') %}
-			<li class="text-gray-300">
-				|
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('admin') }}"><i class="fa-solid fa-user-secret"></i> Admin</a></li>
-			<li class="text-gray-300">
-				|
-			</li>
-            {% endif %}
-			<li><a class="text-sm text-emerald-600 font-bold"><i class="fa-solid fa-book"></i> Subjects</a></li>
-			<li class="text-gray-300">
-				|
-			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_teachers') }}"><i class="fa-solid fa-chalkboard-user"></i> Teachers</a></li>
-			<li class="text-gray-300">
-				|
-			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}"><i class="fa-solid fa-users"></i> Students</a></li>
-			<li class="text-gray-300">
-				|
-			</li>
-			<li><a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a></li>
-		</ul>
 
-		<div x-data="{'darkMode': false}"x-init="darkMode = JSON.parse(localStorage.getItem('darkMode')); $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))">
-                    <div :class="{'dark': darkMode === true}"> 
-                        <div class="flex justify-end items-center space-x-2 lg:ml-auto lg:mr-2 py-2 px-12 text-sm">
-                            
-                <span class="text-sm text-gray-800 dark:text-gray-400"><i class="fa-solid fa-sun"></i></span>
-                    <label for="toggle" class="w-9 h05 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out dark:bg-gray-700">
-                        <div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out dark:translate-x-3"> </div>             
-                    </label>
-                <span class="text-sm text-gray-400 dark:text-gray-50"><i class="fa-solid fa-moon"></i></span>
-                    <input id="toggle" type="checkbox" class="hidden" :value="darkMode" @change="darkMode = !darkMode" />
-                        </div>
-                    </div>
-                </div>
-		
-		<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400"><span>You are logged as </span><strong>{{ app.user.firstname }} {{ app.user.lastname }} | </strong> <a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-    
-	</nav>
+	<div>
+		<nav class="relative px-4 py-4 flex items-center">
 
-	<div class="py-3">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
-            <div class="bg-slate-400 overflow-hidden shadow-xl">
-                <div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700"><div class="text-base text-gray-600 dark:text-gray-300"><span><strong>Add new grade</strong> </span></div>
-					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34">
-                  	
-		{{ form_start(form) }}
+			<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="text-gray-300">|
+					</li>
+					<li>
+						<a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('admin') }}">
+							<i class="fa-solid fa-user-secret"></i>
+							Admin</a>
+					</li>
+					<li class="text-gray-300">
+						|
+					</li>
+				{% endif %}
+				<li>
+					<a class="text-sm text-emerald-600 font-bold">
+						<i class="fa-solid fa-book"></i>
+						Subjects</a>
+				</li>
+				<li class="text-gray-300">
+					|
+				</li>
+				<li>
+					<a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_teachers') }}">
+						<i class="fa-solid fa-chalkboard-user"></i>
+						Teachers</a>
+				</li>
+				<li class="text-gray-300">
+					|
+				</li>
+				<li>
+					<a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}">
+						<i class="fa-solid fa-users"></i>
+						Students</a>
+				</li>
+				<li class="text-gray-300">
+					|
+				</li>
+				<li>
+					<a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a>
+				</li>
+			</ul>
 
-			<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
-				{{ form_label(form.student) }}: <strong>{{ student.firstname }} {{ student.lastname }}</strong> Class: <strong>{{ student.classroom }}</strong>
-			</label>
-			
-				{{ form_widget(form.student, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+			<div x-data="{'darkMode': false}" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode')); $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))">
+				<div :class="{'dark': darkMode === true}">
+					<div class="flex justify-end items-center space-x-2 lg:ml-auto lg:mr-2 py-2 px-12 text-sm">
 
-			<div class="text-xs text-red-600 dark:text-red-500">
-				{{ form_errors(form.student) }}
+						<span class="text-sm text-gray-800 dark:text-gray-400">
+							<i class="fa-solid fa-sun"></i>
+						</span>
+						<label for="toggle" class="w-9 h05 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out dark:bg-gray-700">
+							<div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out dark:translate-x-3"></div>
+						</label>
+						<span class="text-sm text-gray-400 dark:text-gray-50">
+							<i class="fa-solid fa-moon"></i>
+						</span>
+						<input id="toggle" type="checkbox" class="hidden" :value="darkMode" @change="darkMode = !darkMode"/>
+					</div>
+				</div>
 			</div>
 
-			<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
-				{{ form_label(form.subject) }}: <strong>{{ teachertask.subject }}</strong>
-			</label>
+			<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400">
+				<span>You are logged as
+				</span>
+				<strong>{{ app.user.firstname }}
+					{{ app.user.lastname }}
+					|
+				</strong>
+				<a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}">
+					<i class="fa-solid fa-right-from-bracket"></i>
+					Logout</a>
 
-				{{ form_widget(form.subject, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+			</nav>
 
-			<div class="text-xs text-red-600 dark:text-red-500">
-				{{ form_errors(form.subject) }}
+			<div class="py-3">
+				<div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
+					<div class="bg-slate-400 overflow-hidden shadow-xl">
+						<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700">
+							<div class="text-base text-gray-600 dark:text-gray-300">
+								<span>
+									<strong>Add new grade</strong>
+								</span>
+							</div>
+							<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34">
+
+								{{ form_start(form) }}
+
+								<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+									{{ form_label(form.student) }}:
+									<strong>{{ student.firstname }}
+										{{ student.lastname }}</strong>
+									Class:
+									<strong>{{ student.classroom }}</strong>
+								</label>
+
+								{{ form_widget(form.student, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+
+								<div class="text-xs text-red-600 dark:text-red-500">
+									{{ form_errors(form.student) }}
+								</div>
+
+								<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+									{{ form_label(form.subject) }}:
+									<strong>{{ teachertask.subject }}</strong>
+								</label>
+
+								{{ form_widget(form.subject, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+
+								<div class="text-xs text-red-600 dark:text-red-500">
+									{{ form_errors(form.subject) }}
+								</div>
+
+								<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+									{{ form_label(form.grade) }}
+								</label>
+
+								{{ form_widget(form.grade, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+
+								<div class="text-xs text-red-600 dark:text-red-500">
+									{{ form_errors(form.grade) }}
+								</div>
+
+								<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+									{{ form_label(form.description) }}
+								</label>
+
+								{{ form_widget(form.description, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+
+								<div class="text-xs text-red-600 dark:text-red-500">
+									{{ form_errors(form.description) }}
+								</div>
+
+								<div class="container mt-4 space-y-6"></div>
+								<div class="form-group group relative flex justify-center w-1/12 rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+									{{ form_row(form.submit) }}
+								</div>
+
+								{{ form_end(form) }}
+
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+		</div>
 
-			<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
-				{{ form_label(form.grade) }}
-			</label>
-
-				{{ form_widget(form.grade, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
-
-			<div class="text-xs text-red-600 dark:text-red-500">
-				{{ form_errors(form.grade) }}
+		<footer class="relative px-4 py-4 flex items-center text-gray-400 dark:text-gray-600">
+			<div class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+				<div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300 dark:border-gray-700">
+					<span>© 2023 Design by - Filip Jarek</span>
+				</div>
 			</div>
+		</footer>
 
-			<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
-				{{ form_label(form.description) }}
-			</label>
-
-				{{ form_widget(form.description, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
-
-			<div class="text-xs text-red-600 dark:text-red-500">
-				{{ form_errors(form.description) }}
-			</div>
-
-			<div class="container mt-4 space-y-6"></div>
-			<div class="form-group group relative flex justify-center w-1/12 rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-				{{ form_row(form.submit) }}
-			</div>
-			
-		{{ form_end(form) }}
-		
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endblock %}
+	{% endblock %}

@@ -105,8 +105,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-    * @var string
-    */
+     * @var string
+     */
     private $plainPassword;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: TeacherTask::class)]
@@ -128,11 +128,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function getPlainPassword(): string
     {
-    return $this->plainPassword;
+        return $this->plainPassword;
     }
 
     /**
@@ -188,10 +188,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-       
-    public function __toString() {
+
+    public function __toString()
+    {
         return $this->username;
-        
     }
-     
 }
