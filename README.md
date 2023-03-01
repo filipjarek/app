@@ -23,6 +23,7 @@ List the ready features here:
 - Creating, editing and deleting: students, classrooms, subjects, grades
 
 ## Screenshots
+![Login](./Screenshots/Screenshot_1.png)
 
 ## Setup
 #### Step 1 : Clone the project
