@@ -93,21 +93,21 @@
 							<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34">
 								<div class="container mt-4">
 
-									<div class="relative overflow-x-auto shadow-md">
+									<div class="relative overflow-x-auto shadow-md">			
 										<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
 											<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
 												<tr>
 													<th scope="col" class="px-6 py-3">
-														Id
+														{{ knp_pagination_sortable(students, 'Id', 'id') }}
 													</th>
 													<th scope="col" class="px-6 py-3">
-														Firstname
+														{{ knp_pagination_sortable(students, 'Firstname', 'firstname') }}
 													</th>
 													<th scope="col" class="px-6 py-3">
-														Lastname
+														{{ knp_pagination_sortable(students, 'Lastname', 'lastname') }}
 													</th>
 													<th scope="col" class="px-6 py-3">
-														Classroom
+														{{ knp_pagination_sortable(students, 'Classroom', 'classroom') }}
 													</th>
 												</tr>
 											</thead>
@@ -153,6 +153,9 @@
 											</tbody>
 										</table>
 									</div>
+										<div class="navigation">
+										{{ knp_pagination_render(students) }}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -167,5 +170,6 @@
 					</div>
 				</div>
 			</footer>
+
 
 		{% endblock %}
