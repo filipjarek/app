@@ -90,7 +90,7 @@ class TeacherController extends AbstractController
         return $this->redirectToRoute('show_subjects');
     }
 
-    #[Route('/subject/class/student/{id}/grade/add', name: 'add_grade')]
+    #[Route('/subject/class/student/{id}/grade/add', name: 'add_grade', methods: ['GET'])]
 
     public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
     {

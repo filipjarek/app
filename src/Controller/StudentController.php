@@ -26,7 +26,7 @@ class StudentController extends AbstractController
             5
         );
         return new Response($twig->render('student/index.html.twig', [
-            'students' => $studentRepository->findBy([], ['lastname' => 'ASC', 'firstname' => 'ASC']),
+            'students' => $studentRepository,
             'students' => $students
         ]));
     }

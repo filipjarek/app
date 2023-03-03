@@ -1,186 +1,104 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Show student
+{% block title %}
+	Show student
 {% endblock %}
 
 {% block body %}
+{% include "components/_header.html.twig" %}
 
-	<div>
-		<nav class="relative px-4 py-4 flex items-center">
-
-			<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-				{% if is_granted('ROLE_ADMIN') %}
-					<li class="text-gray-300">|
-					</li>
-					<li>
-						<a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('admin') }}">
-							<i class="fa-solid fa-user-secret"></i>
-							Admin</a>
-					</li>
-					<li class="text-gray-300">
-						|
-					</li>
-				{% endif %}
-				<li>
-					<a class="text-sm text-emerald-600 font-bold">
-						<i class="fa-solid fa-book"></i>
-						Subjects</a>
-				</li>
-				<li class="text-gray-300">
-					|
-				</li>
-				<li>
-					<a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('show_teachers') }}">
-						<i class="fa-solid fa-chalkboard-user"></i>
-						Teachers</a>
-				</li>
-				<li class="text-gray-300">
-					|
-				</li>
-				<li>
-					<a class="text-sm text-gray-400 hover:text-gray-500" href="{{ path('app_student') }}">
-						<i class="fa-solid fa-users"></i>
-						Students</a>
-				</li>
-				<li class="text-gray-300">
-					|
-				</li>
-				<li>
-					<a class="text-sm text-gray-400 hover:text-gray-500" href="#"></a>
-				</li>
-			</ul>
-
-			<div x-data="{'darkMode': false}" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode')); $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))">
-				<div :class="{'dark': darkMode === true}">
-					<div class="flex justify-end items-center space-x-2 lg:ml-auto lg:mr-2 py-2 px-12 text-sm">
-
-						<span class="text-sm text-gray-800 dark:text-gray-400">
-							<i class="fa-solid fa-sun"></i>
+	<div class="py-3">
+		<div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
+			<div class="bg-slate-400 overflow-hidden shadow-xl">
+				<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700">
+					<div class="text-base text-gray-600 dark:text-gray-300">
+						<span>
+							<strong>Student:
+								{{ student.lastname }}
+								{{ student.firstname }}</strong>
 						</span>
-						<label for="toggle" class="w-9 h05 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out dark:bg-gray-700">
-							<div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out dark:translate-x-3"></div>
-						</label>
-						<span class="text-sm text-gray-400 dark:text-gray-50">
-							<i class="fa-solid fa-moon"></i>
-						</span>
-						<input id="toggle" type="checkbox" class="hidden" :value="darkMode" @change="darkMode = !darkMode"/>
 					</div>
-				</div>
-			</div>
+					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
+						<a href="{{ path('add_grade', { id: student.id }) }}">
+							<button type="button" class="relative flex justify-center w-1/8 rounded-md border border-transparent bg-emerald-600 py-1 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none">Add grade</button>
+						</a>
+						<div class="container mt-4">
 
-			<div class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-sm text-gray-400">
-				<span>You are logged as
-				</span>
-				<strong>{{ app.user.firstname }}
-					{{ app.user.lastname }}
-					|
-				</strong>
-				<a class="hidden lg:inline-block lg:ml-auto lg:mr-2 py-2 px-1 text-sm text-gray-400 hover:text-red-500" href="{{ path('app_logout') }}">
-					<i class="fa-solid fa-right-from-bracket"></i>
-					Logout</a>
+							<div class="relative overflow-x-auto shadow-md">
+								<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
+									<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
+										<tr>
+											<th scope="col" class="px-6 py-3">
+												Grades
+											</th>
+											<th scope="col" class="px-6 py-3 text-center">
+												Description
+											</th>
+											<th scope="col" class="px-6 py-3 text-center">
+												Action
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										{%  for task in tasks %}
 
-			</nav>
+											<tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
+												<th scope="row" class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white">
 
-			<div class="py-3">
-				<div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
-					<div class="bg-slate-400 overflow-hidden shadow-xl">
-						<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700">
-							<div class="text-base text-gray-600 dark:text-gray-300">
-								<span>
-									<strong>Student:
-										{{ student.lastname }}
-										{{ student.firstname }}</strong>
-								</span>
-							</div>
-							<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
-								<a href="{{ path('add_grade', { id: student.id }) }}">
-									<button type="button" class="relative flex justify-center w-1/8 rounded-md border border-transparent bg-emerald-600 py-1 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none">Add grade</button>
-								</a>
-								<div class="container mt-4">
+													{% if task.grade == '1' %}
+														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-cyan-400 dark:bg-cyan-700">
+															{{ task.grade }}
+														</span>
+													{% elseif task.grade == '2' %}
+														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-400 dark:bg-blue-700">
+															{{ task.grade }}
+														</span>
+													{% elseif task.grade == '3' %}
+														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-violet-400 dark:bg-violet-700">
+															{{ task.grade }}
+														</span>
+													{% elseif task.grade == '4' %}
+														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-400 dark:bg-fuchsia-700">
+															{{ task.grade }}
+														</span>
+													{% elseif task.grade == '5' %}
+														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-rose-400 dark:bg-rose-700">
+															{{ task.grade }}
+														</span>
+													{% elseif task.grade == '6' %}
+														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-400 dark:bg-red-700">
+															{{ task.grade }}
+														</span>
+													{% endif %}
 
-									<div class="relative overflow-x-auto shadow-md">
-										<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
-											<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
-												<tr>
-													<th scope="col" class="px-6 py-3">
-														Grades
-													</th>
-													<th scope="col" class="px-6 py-3 text-center">
-														Description
-													</th>
-													<th scope="col" class="px-6 py-3 text-center">
-														Action
-													</th>
-												</tr>
-											</thead>
-											<tbody>
-												{%  for task in tasks %}
+												</th>
+												<td class="px-6 py-4 text-center">
+													{{ task.description }}
+												</td>
+												<td class="px-6 py-4 text-center">
+													<a href="{{ path('edit_grade', { id: task.id }) }}">
+														<button type="button" class="font-medium text-yellow-600 dark:text-yellow-500">
+															<i class="fa-solid fa-pen-to-square"></i>
+															Edit</button>
+													</a>
+													|
+													<a href="{{ path('delete_grade', { id: task.id }) }}">
+														<button type="button" class="font-medium text-red-600 dark:text-red-500">
+															<i class="fa-solid fa-trash"></i>
+															Delete</button>
+													</a>
+												</td>
+											{% endfor %}
+										</tr>
 
-													<tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
-														<th scope="row" class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white">
-
-															{% if task.grade == '1' %}
-																<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-cyan-400 dark:bg-cyan-700">
-																	{{ task.grade }}
-																</span>
-															{% elseif task.grade == '2' %}
-																<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-400 dark:bg-blue-700">
-																	{{ task.grade }}
-																</span>
-															{% elseif task.grade == '3' %}
-																<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-violet-400 dark:bg-violet-700">
-																	{{ task.grade }}
-																</span>
-															{% elseif task.grade == '4' %}
-																<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-400 dark:bg-fuchsia-700">
-																	{{ task.grade }}
-																</span>
-															{% elseif task.grade == '5' %}
-																<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-rose-400 dark:bg-rose-700">
-																	{{ task.grade }}
-																</span>
-															{% elseif task.grade == '6' %}
-																<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-400 dark:bg-red-700">
-																	{{ task.grade }}
-																</span>
-															{% endif %}
-
-														</th>
-														<td class="px-6 py-4 text-center">
-															{{ task.description }}
-														</td>
-														<td class="px-6 py-4 text-center">
-															<a href="{{ path('edit_grade', { id: task.id }) }}">
-																<button type="button" class="font-medium text-yellow-600 dark:text-yellow-500">
-																	<i class="fa-solid fa-pen-to-square"></i>
-																	Edit</button>
-															</a>
-															|
-															<a href="{{ path('delete_grade', { id: task.id }) }}">
-																<button type="button" class="font-medium text-red-600 dark:text-red-500">
-																	<i class="fa-solid fa-trash"></i>
-																	Delete</button>
-															</a>
-														</td>
-													{% endfor %}
-												</tr>
-
-											</tbody>
-										</table>
-									</div>
-								</div>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
 
-			<footer class="relative px-4 py-4 flex items-center text-gray-400 dark:text-gray-600">
-				<div class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-					<div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300 dark:border-gray-700">
-						<span>© 2023 Design by - Filip Jarek</span>
-					</div>
-				</div>
-			</footer>
-
-		{% endblock %}
+{% endblock %}
