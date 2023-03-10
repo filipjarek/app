@@ -33,10 +33,10 @@
 									<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
 										<tr>
 											<th scope="col" class="px-6 py-3">
-												Classroom
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Classroom', 'classroom.id') }}
 											</th>
 											<th scope="col" class="px-6 py-3">
-												Subject
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Subject', 'subject.id') }}
 											</th>
 											<th scope="col" class="px-6 py-3">
 												Teacher
@@ -92,6 +92,9 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					<div class="navigation flex justify-center ">
+						{{ knp_pagination_render(teachertasks) }}
 					</div>
 				</div>
 			</div>

@@ -25,16 +25,16 @@
 									<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
 										<tr>
 											<th scope="col" class="px-6 py-3">
-												Id
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Id', 'id') }}
 											</th>
 											<th scope="col" class="px-6 py-3">
-												Firstname
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Firstname', 'user.firstname') }}
 											</th>
 											<th scope="col" class="px-6 py-3">
-												Lastname
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Lastname', 'user.lastname') }}
 											</th>
 											<th scope="col" class="px-6 py-3">
-												Subject | Class
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Subject', 'subject.name') }} 
 											</th>
 										</tr>
 									</thead>
@@ -43,7 +43,7 @@
 											<tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
 
 												<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-													{{ teachertask.user.id }}
+													{{ teachertask.id }}
 												</th>
 												<td class="px-6 py-4">
 													{{ teachertask.user.firstname }}
@@ -53,9 +53,6 @@
 												</td>
 												<td class="px-6 py-4">
 													{{ teachertask.subject }}
-													|
-													{{ teachertask.classroom }}
-													|
 												</td>
 											</tr>
 										{% endfor %}
@@ -63,6 +60,9 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					<div class="navigation flex justify-center ">
+						{{ knp_pagination_render(teachertasks) }}
 					</div>
 				</div>
 			</div>

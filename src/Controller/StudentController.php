@@ -23,8 +23,9 @@ class StudentController extends AbstractController
         $students = $paginator->paginate(
             $allStudentsQuery,
             $request->query->getInt('page', 1),
-            5
+            10
         );
+        
         return new Response($twig->render('student/index.html.twig', [
             'students' => $studentRepository,
             'students' => $students

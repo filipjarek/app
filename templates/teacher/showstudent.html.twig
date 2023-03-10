@@ -29,10 +29,10 @@
 									<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
 										<tr>
 											<th scope="col" class="px-6 py-3">
-												Grades
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Grades', 'id') }}
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
-												Description
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Description', 'id') }}
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
 												Action
@@ -95,6 +95,9 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					<div class="navigation flex justify-center ">
+						{{ knp_pagination_render(tasks) }}
 					</div>
 				</div>
 			</div>

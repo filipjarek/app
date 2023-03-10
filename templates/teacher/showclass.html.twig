@@ -24,10 +24,13 @@
 									<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
 										<tr>
 											<th scope="col" class="px-6 py-3">
-												Id
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(students, 'Id', 'id') }}
 											</th>
 											<th scope="col" class="px-6 py-3">
-												Fullname
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(students, 'Firstname', 'firstname') }}
+											</th>
+											<th scope="col" class="px-6 py-3">
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(students, 'Lastname', 'lastname') }}
 											</th>
 											<th scope="col" class="px-6 py-3">
 												Classroom
@@ -44,8 +47,10 @@
 													{{ student.id }}
 												</th>
 												<td class="px-6 py-4">
-													{{ student.lastname }}
 													{{ student.firstname }}
+												</td>
+												<td class="px-6 py-4">
+													{{ student.lastname }}												
 												</td>
 												<td class="px-6 py-4">
 
@@ -83,6 +88,9 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					<div class="navigation flex justify-center ">
+						{{ knp_pagination_render(students) }}
 					</div>
 				</div>
 			</div>
