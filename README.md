@@ -24,6 +24,16 @@ List the ready features here:
 
 ## Screenshots
 ![Login](./Screenshots/Screenshot_1.png)
+![Register](./Screenshots/Screenshot_2.png)
+![Student list](./Screenshots/Screenshot_3.png)
+![Student list Darkmode](./Screenshots/Screenshot_4.png)
+![Teacher list](./Screenshots/Screenshot_11.png)
+![Class](./Screenshots/Screenshot_5.png)
+![Student](./Screenshots/Screenshot_6.png)
+![Add grade](./Screenshots/Screenshot_7.png)
+![Edit grade](./Screenshots/Screenshot_8.png)
+![Subjects](./Screenshots/Screenshot_9.png)
+![Easyadmin](./Screenshots/Screenshot_10.png)
 
 ## Setup
 #### Step 1 : Clone the project
