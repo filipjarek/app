@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Profile Information
+{% endblock %}
+
+{% block body %}
+{% include "components/_header.html.twig" %}
+
+	<div class="py-3">
+		<div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
+			<div class="bg-slate-400 overflow-hidden shadow-xl">
+				<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+					<div class="text-base text-gray-600 dark:text-gray-300">
+						<span>
+							<strong>Profile Information</strong>
+						</span>
+					</div>
+
+					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34">
+						<div class="space-y-4">
+
+							<div class="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 dark:text-gray-300 items-center">
+								<h2 class="md:w-1/3 max-w-sm mx-auto">Username</h2>
+								<div class="md:w-2/3 max-w-sm mx-auto">
+									<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Username</label>
+									<div class="w-full inline-flex">
+
+										<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.username }}" disabled>
+									</div>
+								</div>
+							</div>
+
+							<div class="border-t border-gray-200 dark:border-gray-700"></div>
+
+							<div class="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 dark:text-gray-300 items-center">
+								<h2 class="md:w-1/3 mx-auto max-w-sm">Personal info</h2>
+								<div class="md:w-2/3 mx-auto max-w-sm space-y-5">
+									<div>
+										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Firstname</label>
+										<div class="w-full inline-flex">
+											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.firstname }}" disabled>
+										</div>
+									</div>
+									<div>
+										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Lastname</label>
+										<div class="w-full inline-flex">
+											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.lastname }}" disabled>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="border-t border-gray-200 dark:border-gray-700"></div>
+
+							<div class="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 dark:text-gray-300 items-center">
+								<h2 class="md:w-1/3 mx-auto max-w-sm">Change password</h2>
+								<div class="md:w-2/3 mx-auto max-w-sm space-y-5">
+									<div>
+										{{ form_start(form) }}
+										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">
+											{{ form_label(form.plainPassword.first) }}
+										</label>
+										<div class="w-full inline-flex">
+											{{ form_widget(form.plainPassword.first, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
+										</div>
+										<div class="text-xs text-red-600 dark:text-red-500">
+											{{ form_errors(form.plainPassword.first) }}
+										</div>
+									</div>
+									<div>
+										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">
+											{{ form_label(form.plainPassword.second) }}
+										</label>
+										<div class="w-full inline-flex">
+											{{ form_widget(form.plainPassword.second, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
+										</div>
+										<div class="container mt-4 space-y-8"></div>
+										<div class="text-white w-full mx-auto max-w-sm rounded-md text-center bg-indigo-400 hover:bg-indigo-600 py-2 px-4 inline-flex items-center justify-center focus:outline-none md:float-right">
+											{{ form_row(form.submit) }}
+										</div>
+										{{ form_end(form) }}
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
