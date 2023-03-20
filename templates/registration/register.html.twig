@@ -38,47 +38,47 @@
 
 							{{ form_start(registrationForm) }}
 
-							<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+							<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 								{{ form_label(registrationForm.firstname) }}
 							</label>
-
-							{{ form_widget(registrationForm.firstname, { 'attr': {'class':  'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'} }) }}
+						
+							{{ form_widget(registrationForm.firstname, { 'attr': {'class':  'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.firstname) }}
 							</div>
 
-							<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+							<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 								{{ form_label(registrationForm.lastname) }}
 							</label>
 
-							{{ form_widget(registrationForm.lastname, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'} }) }}
+							{{ form_widget(registrationForm.lastname, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.lastname) }}
 							</div>
 
-							<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+							<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 								{{ form_label(registrationForm.username) }}
 							</label>
 
-							{{ form_widget(registrationForm.username, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'} }) }}
+							{{ form_widget(registrationForm.username, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.username) }}
 							</div>
 
-							<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+							<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 								{{ form_label(registrationForm.plainPassword) }}
 							</label>
 
-							{{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'} }) }}
+							{{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.plainPassword) }}
 							</div>
 
-							<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+							<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 								{{ form_label(registrationForm.agreeTerms) }}
 								{{ form_widget(registrationForm.agreeTerms) }}
 							</label>
@@ -86,11 +86,11 @@
 								{{ form_errors(registrationForm.agreeTerms) }}
 							</div>
 
-							<button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none">
+							<button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none mb-1">
 								Sign up
 							</button>
 							<a href="{{ path('app_login') }}">
-								<span class="  flex w-full justify-center  underline mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">Already registered?<span></a>
+								<span class="flex w-full justify-center hover:underline mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">Already registered?<span></a>
 								</div>
 
 								{{ form_end(registrationForm) }}
