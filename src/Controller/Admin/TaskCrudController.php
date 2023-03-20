@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Task;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -28,5 +29,13 @@ class TaskCrudController extends AbstractCrudController
         yield AssociationField::new('student');
         yield AssociationField::new('subject');
         yield AssociationField::new('grade');
+        yield DateTimeField::new('createdAt')
+            ->hideONForm()
+            ->setTimezone('Europe/Warsaw')
+            ->setFormat('short', 'medium');
+        yield DateTimeField::new('updatedAt')
+            ->hideONForm()
+            ->setTimezone('Europe/Warsaw')
+            ->setFormat('short', 'medium');
     }
 }
