@@ -24,16 +24,16 @@
 									<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
 										<tr>
 											<th scope="col" class="px-6 py-3">
-												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Classroom', 'classroom.id') }}
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Classroom', 'classroom.id') }}<i class="fa-solid fa-chalkboard-user"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
-												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Subject', 'subject.id') }}
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(teachertasks, 'Subject', 'subject.id') }}<i class="fa-solid fa-book-bookmark"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
-												Teacher
+												Teacher <i class="fa-solid fa-user-tie"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
-												Action
+												Action <i class="fa-solid fa-ellipsis-vertical"></i>
 											</th>
 										</tr>
 									</thead>
@@ -41,7 +41,7 @@
 										{%  for teachertask in teachertasks %}
 											<tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
 												<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-
+														
 													{% if teachertask.classroom == '4' %}
 														<span class="text-xs inline-block py-1 px-2.5 rounded-md leading-none text-center whitespace-nowrap align-baseline font-bold bg-cyan-400 dark:bg-cyan-700">
 															{{ teachertask.classroom }}

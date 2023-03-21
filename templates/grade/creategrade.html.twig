@@ -16,57 +16,66 @@
 							<strong>Add new grade</strong>
 						</span>
 					</div>
-					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34">
+					<div class="max-w-7xl w-4/5 mx-auto py-6 sm:px-6 lg:px-34">
 
 						{{ form_start(form) }}
 
-						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+						<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 							{{ form_label(form.student) }}:
 							
 						</label>
 
-						{{ form_widget(form.student, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+						{{ form_widget(form.student, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
 
 						<div class="text-xs text-red-600 dark:text-red-500">
 							{{ form_errors(form.student) }}
 						</div>
 
-						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+						<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 							{{ form_label(form.subject) }}:
 							
 						</label>
 
-						{{ form_widget(form.subject, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+						{{ form_widget(form.subject, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
 
 						<div class="text-xs text-red-600 dark:text-red-500">
 							{{ form_errors(form.subject) }}
 						</div>
 
-						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+						<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 							{{ form_label(form.grade) }}
 						</label>
 
-						{{ form_widget(form.grade, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+						{{ form_widget(form.grade, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
 
 						<div class="text-xs text-red-600 dark:text-red-500">
 							{{ form_errors(form.grade) }}
 						</div>
 
-						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
+						<label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 							{{ form_label(form.description) }}
 						</label>
 
-						{{ form_widget(form.description, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+						{{ form_widget(form.description, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
 
 						<div class="text-xs text-red-600 dark:text-red-500">
 							{{ form_errors(form.description) }}
 						</div>
 
-						<div class="container mt-4 space-y-6"></div>
-						<div class="form-group group relative flex justify-center w-1/12 rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+						<div class="flex items-center justify-end px-4 py-3 text-right sm:px-6"> 
+
+						<div class="shadow overflow-hidden inline-flex items-center px-4 py-3 bg-gray-50 dark:bg-gray-700 font-medium border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out">
 							{{ form_row(form.submit) }}
 						</div>
-
+						
+						<div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">    
+							<a href="{{ path('show_student', { id: student.id }) }}">
+                    			<button type="button" class="shadow overflow-hidden inline-flex items-center px-4 py-3 bg-gray-50 dark:bg-gray-700 font-medium border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out">
+                       				Cancel
+                    			</button>
+                			</a>
+                		</div>
+						
 						{{ form_end(form) }}
 
 						</div>

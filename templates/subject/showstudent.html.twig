@@ -19,9 +19,13 @@
 						</span>
 					</div>
 					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
-						<a href="{{ path('add_grade', { id: student.id }) }}">
-							<button type="button" class="relative flex justify-center w-1/8 rounded-md border border-transparent bg-emerald-600 py-1 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none">Add grade</button>
-						</a>
+						<div class="flex items-center justify-start px-4 py-3 text-right sm:px-6">    
+							<a href="{{ path('add_grade', { id: student.id }) }}">
+                    			<button type="button" class="shadow overflow-hidden inline-flex items-center px-4 py-3 bg-gray-50 dark:bg-gray-700 font-medium border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out">
+                       				<i class="fa-solid fa-plus fa-sm"></i> Grade
+                    			</button>
+                			</a>
+                		</div>
 						<div class="container mt-4">
 
 							<div class="relative overflow-x-auto shadow-md">
@@ -29,13 +33,13 @@
 									<thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-600 dark:text-gray-400">
 										<tr>
 											<th scope="col" class="px-6 py-3">
-												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Grades', 'id') }}
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Grades', 'id') }}<i class="fa-solid fa-a"></i>
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
-												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Description', 'id') }}
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Description', 'id') }}<i class="fa-solid fa-file-lines"></i>
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
-												Action
+												Actions <i class="fa-solid fa-ellipsis-vertical"></i>
 											</th>
 										</tr>
 									</thead>
