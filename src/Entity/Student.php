@@ -150,6 +150,6 @@ class Student
     
     public function __toString()
     {
-        return $this->firstname . ' ' . $this->lastname . ' ' . $this->classroom;
+        return $this->firstname . ' ' . $this->lastname;
     }
 }
