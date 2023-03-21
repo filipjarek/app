@@ -23,7 +23,7 @@ class ProfileEditFormType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'type' => PasswordType::class,
                 'invalid_message' => 'The passwords do not match.',
                 'first_options' => [

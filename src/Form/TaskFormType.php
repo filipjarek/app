@@ -31,14 +31,18 @@ class TaskFormType extends AbstractType
                         ->orderBy('s.id', 'ASC');
                 },
                 'label' => 'Subject',
-               
+                'placeholder' => 'Choose an option',
             ])
             ->add('grade', EntityType::class, [
                 'class' => Grade::class,
                 'label' => 'Grade',
-                'choice_label' => 'name'
+                'placeholder' => 'Choose an option',
             ])
-            ->add('description', TextType::class)
+            ->add('description', TextType::class, array(
+                'attr' => array(
+                    'placeholder' => 'Add description...'
+                )
+           ))
 
             ->add('submit', SubmitType::class, [
                 'label' => 'Submit'

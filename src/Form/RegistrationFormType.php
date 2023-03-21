@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -22,51 +23,41 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                 ],
-
+                'attr' => ['placeholder' => 'Dylan']
             ])
-
             ->add('lastname', TextType::class, [
                 'label_attr' => [
                     'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                 ],
-
+                'attr' => ['placeholder' => 'Jones']
             ])
             ->add('username', TextType::class, [
                 'label_attr' => [
                     'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                 ],
-
+                'attr' => ['placeholder' => 'djones']
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label_attr' => [
-                    'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
-                ],
+            ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
+                'required' => true,
+                'type' => PasswordType::class,
+                'invalid_message' => 'The passwords do not match.',
+                'first_options' => [
+                    'label' => 'New password',
+                    'label_attr' => [
+                        'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
+                    ],
+                    'attr' => ['placeholder' => 'Password'],
+                    'constraints' => [
+                        new Length(['min' => 8, 'max' => 32]),
+                    ],
                 ],
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'label' => 'Password',
-                'label_attr' => [
-                    'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
-                ],
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
+                'second_options' => [
+                    'label' => 'Confirm password',
+                    'label_attr' => [
+                        'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
+                    ],
+                    'attr' => ['placeholder' => 'Confirm Password']
                 ],
             ]);
     }
