@@ -13,7 +13,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile', methods: ['GET','POST'])]
-    public function edit(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function changePassword(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(ProfileEditFormType::class, $user);

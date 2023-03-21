@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use Twig\Environment;
 use App\Entity\Student;
 use App\Repository\StudentRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,20 +13,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class StudentController extends AbstractController
 {
     #[Route('/students', name: 'app_student', methods: ['GET'])]
-    public function showStudents(EntityManagerInterface $em, Environment $twig, StudentRepository $studentRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(Request $request, StudentRepository $studentRepository, PaginatorInterface $paginator): Response
     {
-        $studentRepository = $em->getRepository(Student::class);
-        $allStudentsQuery = $studentRepository->findAll();
-
         $students = $paginator->paginate(
-            $allStudentsQuery,
+            $studentRepository->findAll(),
             $request->query->getInt('page', 1),
-            10
+            5
         );
-        
-        return new Response($twig->render('student/index.html.twig', [
-            'students' => $studentRepository,
+        return $this->render('student/index.html.twig', [  
             'students' => $students
-        ]));
+        ]);
     }
 }

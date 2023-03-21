@@ -22,13 +22,10 @@
 
 						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 							{{ form_label(form.student) }}:
-							<strong>{{ student.firstname }}
-								{{ student.lastname }}</strong>
-							Class:
-							<strong>{{ student.classroom }}</strong>
+							
 						</label>
 
-						{{ form_widget(form.student, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+						{{ form_widget(form.student, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500','disabled':'disabled'} }) }}
 
 						<div class="text-xs text-red-600 dark:text-red-500">
 							{{ form_errors(form.student) }}
@@ -36,7 +33,7 @@
 
 						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white py-1 px-1">
 							{{ form_label(form.subject) }}:
-							<strong>{{ teachertask.subject }}</strong>
+							
 						</label>
 
 						{{ form_widget(form.subject, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}

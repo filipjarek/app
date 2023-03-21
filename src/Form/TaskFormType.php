@@ -23,7 +23,7 @@ class TaskFormType extends AbstractType
                 'class' => Student::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('s')
-                        ->orderBy('s.firstname', 'ASC');
+                        ->orderBy('s.id', 'ASC');
                 },
                 'label' => 'Student',
             ])
@@ -31,10 +31,10 @@ class TaskFormType extends AbstractType
                 'class' => Subject::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('s')
-                        ->orderBy('s.name', 'ASC');
+                        ->orderBy('s.id', 'ASC');
                 },
                 'label' => 'Subject',
-                'choice_label' => 'name',
+               
             ])
             ->add('grade', EntityType::class, [
                 'class' => Grade::class,
