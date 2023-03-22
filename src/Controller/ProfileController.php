@@ -28,6 +28,11 @@ class ProfileController extends AbstractController
                 )
             );
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Password edited successfully !'
+            );
             
             return $this->redirectToRoute('app_profile');
         }

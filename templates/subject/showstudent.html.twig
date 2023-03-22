@@ -7,6 +7,12 @@
 {% block body %}
 {% include "components/_header.html.twig" %}
 
+	{% for message in app.flashes('success') %}
+		
+		{% include "components/_alert.html.twig" %}
+		
+	{% endfor %}
+
 	<div class="py-3">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
 			<div class="bg-slate-400 overflow-hidden shadow-xl">

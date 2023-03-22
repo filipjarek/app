@@ -30,6 +30,12 @@ class GradeController extends AbstractController
         $this->em->remove($task);
         $this->em->flush();
 
+        $this->addFlash(
+            'success',
+            'Grade deleted successfully !'
+        );
+
+
         return $this->redirectToRoute('show_student', ['id'=>$task->getStudent()->getId()]);
     }
 
@@ -48,6 +54,12 @@ class GradeController extends AbstractController
           
             $entityManager->persist($task);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Grade added successfully !'
+            );
+
 
             return $this->redirectToRoute('show_student', ['id'=>$student->getId()]);
         }
@@ -69,6 +81,12 @@ class GradeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($task);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Grade edited successfully !'
+            );
+
 
             return $this->redirectToRoute('show_student', ['id'=>$task->getStudent()->getId()]);
         }
