@@ -13,8 +13,9 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SubjectController extends AbstractController
 {
@@ -43,7 +44,10 @@ class SubjectController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function showClassroom($id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
-        $teachertasks = $this->teachertaskRepository->find($id);
+        if (!$teachertasks = $this->teachertaskRepository->findOneById($id)) {
+            throw new NotFoundHttpException();
+        }
+        
         $studentRepository = $em->getRepository(Student::class);
         $allStudentsQuery = $studentRepository->findBy(['classroom' => $id]);
         $tasks = $this->taskRepository->findBy(['student' => $id]);
@@ -66,7 +70,10 @@ class SubjectController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function showStudent($id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
-        $student = $this->studentRepository->find($id);
+        if (!$student = $this->studentRepository->find($id)) {
+            throw new NotFoundHttpException();
+        }
+        
         $taskRepository = $em->getRepository(Task::class);
         $alltaskRepository = $taskRepository->findBy(['student' => $id]);
 

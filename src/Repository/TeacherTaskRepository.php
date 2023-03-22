@@ -39,6 +39,16 @@ class TeacherTaskRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneById($id): ?TeacherTask
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.classroom = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return TeacherTask[] Returns an array of TeacherTask objects
 //     */

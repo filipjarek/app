@@ -30,7 +30,7 @@ class GradeController extends AbstractController
         $this->em->remove($task);
         $this->em->flush();
 
-        return $this->redirectToRoute('show_subjects');
+        return $this->redirectToRoute('show_student', ['id'=>$task->getStudent()->getId()]);
     }
 
     #[Route('/subject/class/student/{id}/grade/add', name: 'add_grade', methods: ['GET', 'POST'])]
@@ -49,7 +49,7 @@ class GradeController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('show_subjects');
+            return $this->redirectToRoute('show_student', ['id'=>$student->getId()]);
         }
 
         return $this->render('grade/creategrade.html.twig', [
@@ -58,8 +58,9 @@ class GradeController extends AbstractController
         ]);
     }
 
-    #[Route('/subject/class/student/grade/edit/{id}', name: 'edit_grade', methods: ['GET', 'POST'])]
+    #[Route('/subject/class/student/{student_id}/grade/edit/{id}', name: 'edit_grade', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
+    #[Entity('task', expr: 'repository.find(student_id)')]
     public function editGrade(Task $task, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TaskFormType::class, $task);
@@ -69,10 +70,11 @@ class GradeController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('show_subjects');
+            return $this->redirectToRoute('show_student', ['id'=>$task->getStudent()->getId()]);
         }
 
         return $this->render('/grade/editgrade.html.twig', [
+            'task' => $task,
             'form' => $form->createView()
         ]);
     }

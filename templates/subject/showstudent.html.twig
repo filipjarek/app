@@ -13,9 +13,8 @@
 				<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700">
 					<div class="text-base text-gray-600 dark:text-gray-300">
 						<span>
-							<strong>Student:
-								{{ student.lastname }}
-								{{ student.firstname }}</strong>
+							Student: <strong>{{ student.lastname }} {{ student.firstname }}</strong>
+							Class: <strong>{{ student.classroom }}</strong>
 						</span>
 					</div>
 					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
@@ -77,10 +76,10 @@
 
 												</th>
 												<td class="px-6 py-4 text-center">
-													{{ task.description }}
+													{{ task.description }} 
 												</td>
 												<td class="px-6 py-4 text-center">
-													<a href="{{ path('edit_grade', { id: task.id }) }}">
+													<a href="/subject/class/student/{{ task.student.id }}/grade/edit/{{ task.id }}">
 														<button type="button" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">
 															<i class="fa-solid fa-pen-to-square"></i>
 															Edit</button>
