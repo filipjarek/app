@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class SubjectController extends AbstractController
 {
@@ -25,6 +26,7 @@ class SubjectController extends AbstractController
     }
 
     #[Route('/subject', name: 'show_subjects', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function showSubjects(Request $request, EntityManagerInterface $em, PaginatorInterface $paginator, TeacherTaskRepository $teachertaskRepository): Response
     {
         $teachertasks = $paginator->paginate(
@@ -38,6 +40,7 @@ class SubjectController extends AbstractController
     }
 
     #[Route('/subject/class/{id}', name: 'show_class', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function showClassroom($id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
         $teachertasks = $this->teachertaskRepository->find($id);
@@ -60,6 +63,7 @@ class SubjectController extends AbstractController
     }
 
     #[Route('/subject/class/student/{id}', name: 'show_student', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function showStudent($id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
         $student = $this->studentRepository->find($id);

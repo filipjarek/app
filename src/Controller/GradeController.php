@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class GradeController extends AbstractController
 { 
@@ -22,6 +23,7 @@ class GradeController extends AbstractController
     }
 
     #[Route('/subject/class/student/grade/delete/{id}', name: 'delete_grade', methods: ['GET', 'DELETE'])]
+    #[IsGranted('ROLE_USER')]
     public function deleteGrade($id, EntityManagerInterface $em): Response
     {
         $task = $this->taskRepository->find($id);
@@ -32,6 +34,7 @@ class GradeController extends AbstractController
     }
 
     #[Route('/subject/class/student/{id}/grade/add', name: 'add_grade', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function newGrade(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
         $student = $this->studentRepository->find($id);
@@ -56,6 +59,7 @@ class GradeController extends AbstractController
     }
 
     #[Route('/subject/class/student/grade/edit/{id}', name: 'edit_grade', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function editGrade(Task $task, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TaskFormType::class, $task);

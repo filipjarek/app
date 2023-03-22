@@ -9,10 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class StudentController extends AbstractController
 {
     #[Route('/students', name: 'app_student', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(Request $request, StudentRepository $studentRepository, PaginatorInterface $paginator): Response
     {
         $students = $paginator->paginate(

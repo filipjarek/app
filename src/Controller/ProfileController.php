@@ -9,10 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile', methods: ['GET','POST'])]
+    #[IsGranted('ROLE_USER')]
     public function changePassword(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = $this->getUser();
