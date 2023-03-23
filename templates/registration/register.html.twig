@@ -42,7 +42,7 @@
 								{{ form_label(registrationForm.firstname) }}
 							</label>
 						
-							{{ form_widget(registrationForm.firstname, { 'attr': {'class':  'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
+							{{ form_widget(registrationForm.firstname, { 'attr': {'class':  'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.firstname) }}
@@ -52,7 +52,7 @@
 								{{ form_label(registrationForm.lastname) }}
 							</label>
 
-							{{ form_widget(registrationForm.lastname, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
+							{{ form_widget(registrationForm.lastname, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.lastname) }}
@@ -62,7 +62,7 @@
 								{{ form_label(registrationForm.username) }}
 							</label>
 
-							{{ form_widget(registrationForm.username, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
+							{{ form_widget(registrationForm.username, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.username) }}
@@ -72,7 +72,7 @@
 								{{ form_label(registrationForm.plainPassword.first) }}
 							</label>
 
-							{{ form_widget(registrationForm.plainPassword.first, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
+							{{ form_widget(registrationForm.plainPassword.first, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.plainPassword.first) }}
@@ -82,13 +82,13 @@
 								{{ form_label(registrationForm.plainPassword.second) }}
 							</label>
 
-							{{ form_widget(registrationForm.plainPassword.second, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
+							{{ form_widget(registrationForm.plainPassword.second, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 mb-1'} }) }}
 
 							<div class="text-xs text-red-600 dark:text-red-500">
 								{{ form_errors(registrationForm.plainPassword.second) }}
 							</div>
 							<div class="container mt-4 space-y-8"></div>
-							<button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none mb-1">
+							<button type="submit" class="group relative flex w-full justify-center border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none mb-1">
 								Sign up
 							</button>
 							<a href="{{ path('app_login') }}">

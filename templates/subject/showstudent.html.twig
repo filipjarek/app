@@ -48,14 +48,15 @@
 				<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700">
 					<div class="text-base text-gray-600 dark:text-gray-300">
 						<span>
-							Student: <strong>{{ student.lastname }} {{ student.firstname }}</strong>
+							Subject: <strong>{{ subject.name }}</strong>
 							Class: <strong>{{ student.classroom }}</strong>
+							Student: <strong>{{ student.firstname }} {{ student.lastname }}</strong>
 						</span>
 					</div>
 					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
 						<div class="flex items-center justify-start px-4 py-3 text-right sm:px-6">    
 							<a href="/subject/{{ subject.id }}/class/{{ student.classroom.id }}/student/{{ student.id }}/grade/add">
-                    			<button type="button" class="shadow overflow-hidden inline-flex items-center px-4 py-3 bg-gray-50 dark:bg-gray-700 font-medium border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out">
+                    			<button type="button" class="shadow overflow-hidden inline-flex items-center px-4 py-3 font-medium border border-gray-300 dark:border-gray-600  text-sm dark:text-white tracking-widest hover:bg-emerald-500 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out">
                        				<i class="fa-solid fa-plus fa-sm"></i> Grade
                     			</button>
                 			</a>
@@ -73,6 +74,9 @@
 												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Description', 'id') }}<i class="fa-solid fa-file-lines"></i>
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
+												<i class="fa-solid fa-sort"></i> {{ knp_pagination_sortable(tasks, 'Date', 'id') }}<i class="fa-solid fa-calendar-days"></i>
+											</th>
+											<th scope="col" class="px-6 py-3 text-center">
 												Actions <i class="fa-solid fa-ellipsis-vertical"></i>
 											</th>
 										</tr>
@@ -84,27 +88,27 @@
 												<th scope="row" class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white">
 
 													{% if task.grade == '1' %}
-														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-cyan-400 dark:bg-cyan-700">
+														<span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-cyan-400 dark:bg-cyan-700">
 															{{ task.grade }}
 														</span>
 													{% elseif task.grade == '2' %}
-														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-400 dark:bg-blue-700">
+														<span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-400 dark:bg-blue-700">
 															{{ task.grade }}
 														</span>
 													{% elseif task.grade == '3' %}
-														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-violet-400 dark:bg-violet-700">
+														<span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-violet-400 dark:bg-violet-700">
 															{{ task.grade }}
 														</span>
 													{% elseif task.grade == '4' %}
-														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-400 dark:bg-fuchsia-700">
+														<span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-400 dark:bg-fuchsia-700">
 															{{ task.grade }}
 														</span>
 													{% elseif task.grade == '5' %}
-														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-rose-400 dark:bg-rose-700">
+														<span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-rose-400 dark:bg-rose-700">
 															{{ task.grade }}
 														</span>
 													{% elseif task.grade == '6' %}
-														<span class="text-xs rounded-md inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-400 dark:bg-red-700">
+														<span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-400 dark:bg-red-700">
 															{{ task.grade }}
 														</span>
 													{% endif %}
@@ -112,16 +116,19 @@
 												</th>
 												<td class="px-6 py-4 text-center">
 													{{ task.description }} 
-												</td>										
+												</td>	
+												<td class="px-6 py-4 text-center">
+													{{ task.createdAt|format_date('medium') }}
+												</td>									
 												<td class="px-6 py-4 text-center">
 													<a href="/subject/{{ task.subject.id }}/class/{{ student.classroom.id }}/student/{{ task.student.id }}/grade/edit/{{ task.id }}">
-														<button type="button" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">
+														<button type="button" class="font-medium text-gray-400 dark:text-gray-500 hover:text-yellow-600 dark:hover:text-yellow-600">
 															<i class="fa-solid fa-pen-to-square"></i>
 															Edit</button>
 													</a>
 													|
 													<a href="/subject/class/{{ student.classroom.id }}/student/grade/delete/{{ task.id }}">
-														<button type="button" class="font-medium text-red-600 dark:text-red-500 hover:underline">
+														<button type="button" class="font-medium text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-600">
 															<i class="fa-solid fa-trash"></i>
 															Delete</button>
 													</a>

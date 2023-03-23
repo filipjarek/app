@@ -44,7 +44,7 @@
 									<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Username</label>
 									<div class="w-full inline-flex">
 
-										<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.username }}" disabled>
+										<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.username }}" disabled>
 									</div>
 								</div>
 							</div>
@@ -57,13 +57,13 @@
 									<div>
 										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Firstname</label>
 										<div class="w-full inline-flex">
-											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.firstname }}" disabled>
+											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.firstname }}" disabled>
 										</div>
 									</div>
 									<div>
 										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Lastname</label>
 										<div class="w-full inline-flex">
-											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.lastname }}" disabled>
+											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.lastname }}" disabled>
 										</div>
 									</div>
 								</div>
@@ -80,7 +80,7 @@
 											{{ form_label(form.plainPassword.first) }}
 										</label>
 										<div class="w-full inline-flex">
-											{{ form_widget(form.plainPassword.first, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
+											{{ form_widget(form.plainPassword.first, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
 										</div>
 										<div class="text-xs text-red-600 dark:text-red-500">
 											{{ form_errors(form.plainPassword.first) }}
@@ -91,10 +91,10 @@
 											{{ form_label(form.plainPassword.second) }}
 										</label>
 										<div class="w-full inline-flex">
-											{{ form_widget(form.plainPassword.second, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
+											{{ form_widget(form.plainPassword.second, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
 										</div>
 										<div class="container mt-4 space-y-8"></div>
-										<div class="shadow overflow-hidden inline-flex items-center px-4 py-3 bg-gray-50 dark:bg-gray-700 font-medium border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out justify-center">
+										<div class="shadow overflow-hidden inline-flex items-center px-4 py-3 font-medium border border-gray-300 dark:border-gray-600 text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out justify-center">
 											{{ form_row(form.submit) }}
 										</div>
 										{{ form_end(form) }}
