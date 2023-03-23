@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\Subject;
 use App\Entity\Student;
 use App\Entity\TeacherTask;
 use App\Repository\TaskRepository;
 use App\Repository\StudentRepository;
+use App\Repository\SubjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TeacherTaskRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -23,6 +25,7 @@ class SubjectController extends AbstractController
         protected TeacherTaskRepository $teachertaskRepository,
         protected StudentRepository $studentRepository,
         protected TaskRepository $taskRepository,
+        protected SubjectRepository $subjectRepository,
     ) {
     }
 
@@ -35,19 +38,22 @@ class SubjectController extends AbstractController
             $request->query->getInt('page', 1),
             5
         );  
+
         return $this->render('subject/index.html.twig', [
             'teachertasks' => $teachertasks
         ]);
     }
 
-    #[Route('/subject/class/{id}', name: 'show_class', methods: ['GET'])]
+    #[Route('/subject/{subject_id}/class/{id}', name: 'show_class', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
-    public function showClassroom($id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
+    #[Entity('task', expr: 'repository.find(subject_id)')]
+    public function showClassroom($id, $subject_id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
         if (!$teachertasks = $this->teachertaskRepository->findOneById($id)) {
             throw new NotFoundHttpException();
         }
         
+        $subject = $this->subjectRepository->find($subject_id);
         $studentRepository = $em->getRepository(Student::class);
         $allStudentsQuery = $studentRepository->findBy(['classroom' => $id]);
         $tasks = $this->taskRepository->findBy(['student' => $id]);
@@ -62,18 +68,21 @@ class SubjectController extends AbstractController
             'teachertasks' => $teachertasks,
             'students' => $studentRepository,
             'students' => $students,
+            'subject' => $subject,
             'tasks' => $tasks
         ]);
     }
 
-    #[Route('/subject/class/student/{id}', name: 'show_student', methods: ['GET'])]
+    #[Route('/subject/{subject_id}/class/student/{id}', name: 'show_student', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
-    public function showStudent($id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
+    #[Entity('task', expr: 'repository.find(subject_id)')]
+    public function showStudent($id, $subject_id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
         if (!$student = $this->studentRepository->find($id)) {
             throw new NotFoundHttpException();
         }
         
+        $subject = $this->subjectRepository->find($subject_id);
         $taskRepository = $em->getRepository(Task::class);
         $alltaskRepository = $taskRepository->findBy(['student' => $id]);
 
@@ -85,6 +94,7 @@ class SubjectController extends AbstractController
 
         return $this->render('subject/showstudent.html.twig', [
             'student' => $student,
+            'subject' => $subject,
             'tasks' => $taskRepository,
             'tasks' => $tasks
         ]);

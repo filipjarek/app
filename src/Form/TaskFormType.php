@@ -26,12 +26,8 @@ class TaskFormType extends AbstractType
             ])
             ->add('subject', EntityType::class, [
                 'class' => Subject::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('s')
-                        ->orderBy('s.id', 'ASC');
-                },
                 'label' => 'Subject',
-                'placeholder' => 'Choose an option',
+                'disabled' => 'true',
             ])
             ->add('grade', EntityType::class, [
                 'class' => Grade::class,

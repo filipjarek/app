@@ -25,7 +25,7 @@
 					</div>
 					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
 						<div class="flex items-center justify-start px-4 py-3 text-right sm:px-6">    
-							<a href="{{ path('add_grade', { id: student.id }) }}">
+							<a href="/subject/{{ subject.id }}/class/student/{{ student.id }}/grade/add">
                     			<button type="button" class="shadow overflow-hidden inline-flex items-center px-4 py-3 bg-gray-50 dark:bg-gray-700 font-medium border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out">
                        				<i class="fa-solid fa-plus fa-sm"></i> Grade
                     			</button>
@@ -85,7 +85,7 @@
 													{{ task.description }} 
 												</td>
 												<td class="px-6 py-4 text-center">
-													<a href="/subject/class/student/{{ task.student.id }}/grade/edit/{{ task.id }}">
+													<a href="/subject/{{ task.subject.id }}/class/student/{{ task.student.id }}/grade/edit/{{ task.id }}">
 														<button type="button" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">
 															<i class="fa-solid fa-pen-to-square"></i>
 															Edit</button>
