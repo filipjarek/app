@@ -85,8 +85,11 @@ class GradeController extends AbstractController
     #[Route('/subject/{subject_id}/class/student/{student_id}/grade/edit/{id}', name: 'edit_grade', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     #[Entity('task', expr: 'repository.find(subject_id, student_id)')]
-    public function editGrade(Task $task, Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function editGrade($subject_id, $student_id, Task $task, Request $request, EntityManagerInterface $entityManager): Response
+    {   
+        $student = $this->studentRepository->find($student_id);
+        $subject = $this->subjectRepository->find($subject_id);
+
         $form = $this->createForm(TaskFormType::class, $task);
         $form->handleRequest($request);
 
@@ -107,6 +110,8 @@ class GradeController extends AbstractController
 
         return $this->render('/grade/editgrade.html.twig', [
             'task' => $task,
+            'subject' => $subject,
+            'student' => $student,
             'form' => $form->createView()
         ]);
     }

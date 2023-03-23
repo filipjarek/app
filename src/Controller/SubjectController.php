@@ -73,10 +73,10 @@ class SubjectController extends AbstractController
         ]);
     }
 
-    #[Route('/subject/{subject_id}/class/student/{id}', name: 'show_student', methods: ['GET'])]
+    #[Route('/subject/{subject_id}/class/{classroom_id}/student/{id}', name: 'show_student', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
     #[Entity('task', expr: 'repository.find(subject_id)')]
-    public function showStudent($id, $subject_id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
+    public function showStudent($id, $subject_id, $classroom_id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
         if (!$student = $this->studentRepository->find($id)) {
             throw new NotFoundHttpException();
