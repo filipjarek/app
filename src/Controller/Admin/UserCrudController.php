@@ -70,7 +70,7 @@ class UserCrudController extends AbstractCrudController
         yield TextField::new('lastname');
         yield TextField::new('username');
         yield TextField::new('password')->setFormType(PasswordType::class)->hideOnIndex();
-        $roles = ['ROLE_ADMIN', 'ROLE_USER'];
+        $roles = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_TEACHER'];
         yield ChoiceField::new('roles')
             ->setChoices(array_combine($roles, $roles))
             ->renderAsBadges()
