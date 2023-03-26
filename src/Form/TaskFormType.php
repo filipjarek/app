@@ -7,7 +7,6 @@ use App\Entity\Grade;
 use App\Entity\Student;
 use App\Entity\Subject;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -38,8 +37,7 @@ class TaskFormType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Add description...'
                 )
-           ))
-
+            ))
             ->add('submit', SubmitType::class, [
                 'label' => 'Submit'
             ]);

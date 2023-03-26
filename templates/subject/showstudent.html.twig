@@ -84,6 +84,10 @@
 												{{ knp_pagination_sortable(tasks, 'Date', 'id') }}<i class="fa-solid fa-calendar-days"></i>
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
+												Subject
+												<i class="fa-solid fa-book-bookmark"></i>
+											</th>
+											<th scope="col" class="px-6 py-3 text-center">
 												Actions
 												<i class="fa-solid fa-ellipsis-vertical"></i>
 											</th>
@@ -127,6 +131,9 @@
 												</td>
 												<td class="px-6 py-4 text-center">
 													{{ task.createdAt|format_date('medium') }}
+												</td>
+												<td class="px-6 py-4 text-center">
+													{{ task.subject }}
 												</td>
 												<td class="px-6 py-4 text-center">
 													<a href="/subject/{{ task.subject.id }}/class/{{ student.classroom.id }}/student/{{ task.student.id }}/grade/edit/{{ task.id }}">

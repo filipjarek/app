@@ -22,18 +22,17 @@ class GradeController extends AbstractController
         protected TaskRepository $taskRepository,
         protected SubjectRepository $subjectRepository,
         protected ClassroomRepository $classroomRepository,
-        protected EntityManagerInterface $em
     ) {
     }
 
     #[Route('/subject/class/{classroom_id}/student/grade/delete/{id}', name: 'delete_grade', methods: ['GET', 'DELETE'])]
     #[IsGranted('ROLE_USER')]
-    public function deleteGrade($id, $classroom_id, EntityManagerInterface $em): Response
+    public function deleteGrade(EntityManagerInterface $em, $id, $classroom_id): Response
     {
         $classroom = $this->classroomRepository->find($classroom_id);
         $task = $this->taskRepository->find($id);
-        $this->em->remove($task);
-        $this->em->flush();
+        $em->remove($task);
+        $em->flush();
 
         $this->addFlash(
             'success',
@@ -50,7 +49,7 @@ class GradeController extends AbstractController
     #[Route('/subject/{subject_id}/class/{classroom_id}/student/{id}/grade/add', name: 'add_grade', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     #[Entity('task', expr: 'repository.find(subject_id)')]
-    public function newGrade(Request $request, EntityManagerInterface $entityManager, $id, $subject_id, $classroom_id): Response
+    public function newGrade(Request $request, EntityManagerInterface $em, $id, $subject_id, $classroom_id): Response
     {   
         $student = $this->studentRepository->find($id);
         $subject = $this->subjectRepository->find($subject_id);
@@ -66,8 +65,8 @@ class GradeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
           $task = $form->getData();
           
-            $entityManager->persist($task);
-            $entityManager->flush();
+            $em->persist($task);
+            $em->flush();
 
             $this->addFlash(
                 'success',
@@ -91,7 +90,7 @@ class GradeController extends AbstractController
     #[Route('/subject/{subject_id}/class/{classroom_id}/student/{student_id}/grade/edit/{id}', name: 'edit_grade', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     #[Entity('task', expr: 'repository.find(subject_id, student_id)')]
-    public function editGrade($subject_id, $student_id, $classroom_id, Task $task, Request $request, EntityManagerInterface $entityManager): Response
+    public function editGrade(Task $task, Request $request, EntityManagerInterface $em, $subject_id, $student_id, $classroom_id): Response
     {   
         $student = $this->studentRepository->find($student_id);
         $subject = $this->subjectRepository->find($subject_id);
@@ -101,8 +100,8 @@ class GradeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($task);
-            $entityManager->flush();
+            $em->persist($task);
+            $em->flush();
 
             $this->addFlash(
                 'success',

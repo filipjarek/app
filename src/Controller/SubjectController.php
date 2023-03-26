@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use App\Entity\Subject;
 use App\Entity\Student;
-use App\Entity\TeacherTask;
 use App\Repository\TaskRepository;
 use App\Repository\StudentRepository;
 use App\Repository\SubjectRepository;
@@ -47,7 +45,7 @@ class SubjectController extends AbstractController
     #[Route('/subject/{subject_id}/class/{id}', name: 'show_class', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
     #[Entity('task', expr: 'repository.find(subject_id)')]
-    public function showClassroom($id, $subject_id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
+    public function showClassroom(Request $request, EntityManagerInterface $em, PaginatorInterface $paginator, $id, $subject_id): Response
     {
         if (!$teachertasks = $this->teachertaskRepository->findOneById($id)) {
             throw new NotFoundHttpException();
@@ -76,7 +74,7 @@ class SubjectController extends AbstractController
     #[Route('/subject/{subject_id}/class/{classroom_id}/student/{id}', name: 'show_student', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
     #[Entity('task', expr: 'repository.find(subject_id)')]
-    public function showStudent($id, $subject_id, $classroom_id, Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
+    public function showStudent(Request $request, EntityManagerInterface $em, PaginatorInterface $paginator, $id, $subject_id, $classroom_id): Response
     {
         if (!$student = $this->studentRepository->find($id)) {
             throw new NotFoundHttpException();
@@ -84,7 +82,7 @@ class SubjectController extends AbstractController
         
         $subject = $this->subjectRepository->find($subject_id);
         $taskRepository = $em->getRepository(Task::class);
-        $alltaskRepository = $taskRepository->findBy(['student' => $id]);
+        $alltaskRepository = $taskRepository->findBy(['student' => $id, 'subject' => $subject_id]);
 
         $tasks = $paginator->paginate(
             $alltaskRepository,
