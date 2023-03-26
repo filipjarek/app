@@ -35,7 +35,7 @@ class UserFixtures extends Fixture
             $user->setFirstname($this->faker->firstName())
                 ->setLastname($this->faker->lastName())
                 ->SetUsername($this->faker->userName())
-                ->setRoles(['ROLE_USER'])
+                ->setRoles(['ROLE_USER', 'ROLE_TEACHER'])
                 ->setPassword(
                     $this->hasher->hashPassword($user, 'password')
                 );
