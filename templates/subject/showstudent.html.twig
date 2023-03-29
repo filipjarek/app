@@ -52,8 +52,7 @@
 							Class:
 							<strong>{{ student.classroom }}</strong>
 							Student:
-							<strong>{{ student.firstname }}
-								{{ student.lastname }}</strong>
+							<strong>{{ student.firstname }} {{ student.lastname }}</strong>
 						</span>
 					</div>
 					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34 ">
@@ -73,15 +72,18 @@
 										<tr>
 											<th scope="col" class="px-6 py-3">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(tasks, 'Grades', 'id') }}<i class="fa-solid fa-a"></i>
+												{{ knp_pagination_sortable(tasks, 'Grades', 'id') }}
+												<i class="fa-solid fa-a"></i>
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(tasks, 'Description', 'id') }}<i class="fa-solid fa-file-lines"></i>
+												{{ knp_pagination_sortable(tasks, 'Description', 'id') }}
+												<i class="fa-solid fa-file-lines"></i>
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(tasks, 'Date', 'id') }}<i class="fa-solid fa-calendar-days"></i>
+												{{ knp_pagination_sortable(tasks, 'Date', 'id') }}
+												<i class="fa-solid fa-calendar-days"></i>
 											</th>
 											<th scope="col" class="px-6 py-3 text-center">
 												Subject
@@ -95,7 +97,6 @@
 									</thead>
 									<tbody>
 										{%  for task in tasks %}
-
 											<tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
 												<th scope="row" class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white">
 
@@ -148,15 +149,14 @@
 															Delete</button>
 													</a>
 												</td>
-											{% endfor %}
-										</tr>
-
+											</tr>
+										{% endfor %}
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
-					<div class="navigation flex justify-center ">
+					<div class="navigation flex justify-center">
 						{{ knp_pagination_render(tasks) }}
 					</div>
 				</div>
