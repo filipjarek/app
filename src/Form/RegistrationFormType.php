@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -20,7 +21,7 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                 ],
-                'attr' => ['placeholder' => 'Dylan']
+                'attr' => ['placeholder' => 'Rick']
             ])
             ->add('lastname', TextType::class, [
                 'label_attr' => [
@@ -32,7 +33,7 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                 ],
-                'attr' => ['placeholder' => 'djones']
+                'attr' => ['placeholder' => 'rjones']
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
@@ -56,6 +57,9 @@ class RegistrationFormType extends AbstractType
                     ],
                     'attr' => ['placeholder' => 'Confirm Password']
                 ],
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Submit'
             ]);
     }
 
