@@ -33,7 +33,9 @@
 				<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700">
 					<div class="text-base text-gray-600 dark:text-gray-300">
 						<span>
-							<strong>Student list:</strong>
+							<strong>
+								Student list:
+							</strong>
 						</span>
 					</div>
 					<div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-34">
@@ -45,15 +47,18 @@
 										<tr>
 											<th scope="col" class="px-6 py-3">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(students, 'Id', 'id') }}<i class="fa-solid fa-hashtag"></i>
+												{{ knp_pagination_sortable(students, 'Id', 'id') }}
+												<i class="fa-solid fa-hashtag"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(students, 'Firstname', 'firstname') }}<i class="fa-solid fa-signature"></i>
+												{{ knp_pagination_sortable(students, 'Firstname', 'firstname') }}
+												<i class="fa-solid fa-signature"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(students, 'Lastname', 'lastname') }}<i class="fa-solid fa-signature"></i>
+												{{ knp_pagination_sortable(students, 'Lastname', 'lastname') }}
+												<i class="fa-solid fa-signature"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
 												Classroom
@@ -105,7 +110,8 @@
 												<td class="px-6 py-4">
 													<a href="/subject/{{ subject.id }}/class/{{ student.classroom.id }}/student/{{ student.id }}" class="font-medium text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-600">
 														<i class="fa-solid fa-magnifying-glass"></i>
-														View</a>
+														View
+													</a>
 												</td>
 											</tr>
 										{% endfor %}
@@ -114,7 +120,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="navigation flex justify-center ">
+					<div class="navigation flex justify-center">
 						{{ knp_pagination_render(students) }}
 					</div>
 				</div>
