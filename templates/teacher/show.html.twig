@@ -14,7 +14,8 @@
 					<li class="inline-flex items-center">
 						<p class="inline-flex items-center text-sm font-medium text-gray-700 dark:text-gray-400">
 							<span class="ml-1 text-sm font-medium text-gray-900 md:ml-2 dark:text-gray-100">
-								<i class="fa-solid fa-house w-4 h-4 mr-2"></i>Teachers
+								<i class="fa-solid fa-house w-4 h-4 mr-2"></i>
+								Teachers
 							</span>
 						</p>
 					</li>
@@ -24,7 +25,8 @@
 				<div class="p-6 sm:px-20 bg-gray-100 dark:bg-gray-800 border border-gray-300  dark:border-gray-700">
 					<div class="text-base text-gray-600 dark:text-gray-300">
 						<span>
-							<strong>Teacher list:
+							<strong>
+								Teacher list:
 							</strong>
 						</span>
 					</div>
@@ -37,15 +39,18 @@
 										<tr>
 											<th scope="col" class="px-6 py-3">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(users, 'Id', 'id') }}<i class="fa-solid fa-hashtag"></i>
+												{{ knp_pagination_sortable(users, 'Id', 'id') }}
+												<i class="fa-solid fa-hashtag"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(users, 'Firstname', 'firstname') }}<i class="fa-solid fa-signature"></i>
+												{{ knp_pagination_sortable(users, 'Firstname', 'firstname') }}
+												<i class="fa-solid fa-signature"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
 												<i class="fa-solid fa-sort"></i>
-												{{ knp_pagination_sortable(users, 'Lastname', 'lastname') }}<i class="fa-solid fa-signature"></i>
+												{{ knp_pagination_sortable(users, 'Lastname', 'lastname') }}
+												<i class="fa-solid fa-signature"></i>
 											</th>
 											<th scope="col" class="px-6 py-3">
 												Role
@@ -56,7 +61,6 @@
 									<tbody>
 										{%  for user in users %}
 											<tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
-
 												<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 													{{ user.id }}
 												</th>
@@ -71,7 +75,6 @@
 														teacher
 													</span>
 												</td>
-
 											</tr>
 										{% endfor %}
 									</tbody>
@@ -79,7 +82,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="navigation flex justify-center ">
+					<div class="navigation flex justify-center">
 						{{ knp_pagination_render(users) }}
 					</div>
 				</div>
