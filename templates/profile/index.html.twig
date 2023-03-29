@@ -20,7 +20,8 @@
 					<li class="inline-flex items-center">
 						<p class="inline-flex items-center text-sm font-medium text-gray-700 dark:text-gray-400">
 							<span class="ml-1 text-sm font-medium text-gray-900 md:ml-2 dark:text-gray-100">
-								<i class="fa-solid fa-house w-4 h-4 mr-2"></i>Profile
+								<i class="fa-solid fa-house w-4 h-4 mr-2"></i>
+								Profile
 							</span>
 						</p>
 					</li>
@@ -38,11 +39,14 @@
 						<div class="space-y-4">
 
 							<div class="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 dark:text-gray-300 items-center">
-								<h2 class="md:w-1/3 max-w-sm mx-auto">Username</h2>
+								<h2 class="md:w-1/3 max-w-sm mx-auto">
+									Username
+								</h2>
 								<div class="md:w-2/3 max-w-sm mx-auto">
-									<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Username</label>
+									<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">
+										Username
+									</label>
 									<div class="w-full inline-flex">
-
 										<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.username }}" disabled>
 									</div>
 								</div>
@@ -51,16 +55,22 @@
 							<div class="border-t border-gray-200 dark:border-gray-700"></div>
 
 							<div class="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 dark:text-gray-300 items-center">
-								<h2 class="md:w-1/3 mx-auto max-w-sm">Personal info</h2>
+								<h2 class="md:w-1/3 mx-auto max-w-sm">
+									Personal info
+								</h2>
 								<div class="md:w-2/3 mx-auto max-w-sm space-y-5">
 									<div>
-										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Firstname</label>
+										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">
+											Firstname
+										</label>
 										<div class="w-full inline-flex">
 											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.firstname }}" disabled>
 										</div>
 									</div>
 									<div>
-										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">Lastname</label>
+										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">
+											Lastname
+										</label>
 										<div class="w-full inline-flex">
 											<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500" placeholder="{{ app.user.lastname }}" disabled>
 										</div>
@@ -71,10 +81,14 @@
 							<div class="border-t border-gray-200 dark:border-gray-700"></div>
 
 							<div class="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 dark:text-gray-300 items-center">
-								<h2 class="md:w-1/3 mx-auto max-w-sm">Change password</h2>
+								<h2 class="md:w-1/3 mx-auto max-w-sm">
+									Change password
+								</h2>
 								<div class="md:w-2/3 mx-auto max-w-sm space-y-5">
 									<div>
-										{{ form_start(form) }}
+
+									{{ form_start(form) }}
+										
 										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">
 											{{ form_label(form.plainPassword.first) }}
 										</label>
@@ -84,26 +98,27 @@
 										<div class="text-xs text-red-600 dark:text-red-500">
 											{{ form_errors(form.plainPassword.first) }}
 										</div>
-									</div>
-									<div>
+
 										<label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300 py-1 px-1">
 											{{ form_label(form.plainPassword.second) }}
 										</label>
 										<div class="w-full inline-flex">
 											{{ form_widget(form.plainPassword.second, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:ring-gray-500 dark:focus:ring-gray-500'} }) }}
 										</div>
+										<div class="text-xs text-red-600 dark:text-red-500">
+											{{ form_errors(form.plainPassword.second) }}
+										</div>
+
 										<div class="container mt-4 space-y-8"></div>
 										<div class="shadow overflow-hidden inline-flex items-center px-4 py-3 font-medium border border-gray-300 dark:border-gray-600 text-sm dark:text-white tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white disabled:opacity-25 transition duration-700 ease-in-out justify-center">
 											{{ form_row(form.submit) }}
 										</div>
-										{{ form_end(form) }}
+
+									{{ form_end(form) }}
 
 									</div>
-
 								</div>
-
 							</div>
-
 						</div>
 					</div>
 				</div>

@@ -20,6 +20,7 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(ProfileEditFormType::class, $user);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -27,12 +28,9 @@ class ProfileController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            $em->flush();
 
-            $this->addFlash(
-                'success',
-                'Password edited successfully !'
-            );
+            $em->flush();
+            $this->addFlash('success', 'Password updated successfully !');
             
             return $this->redirectToRoute('app_profile');
         }
