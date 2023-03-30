@@ -20,14 +20,25 @@ class UserFixtures extends Fixture
         $this->faker = Factory::create();
 
         $user = new User();
-        $user->setFirstname('David')
+        $user->setFirstname('Rick')
             ->setLastname('Joe')
             ->setUsername('admin')
             ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
             ->setPassword(
                 $this->hasher->hashPassword($user, 'password')
             );
+        
+        $manager->persist($user);
 
+        $user = new User();
+        $user->setFirstname('David')
+            ->setLastname('Vince')
+            ->setUsername('user')
+            ->setRoles(['ROLE_USER'])
+            ->setPassword(
+                $this->hasher->hashPassword($user, 'password')
+            );
+        
         $manager->persist($user);
 
         for ($i = 0; $i < 10; $i++) {
