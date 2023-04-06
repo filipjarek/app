@@ -11,6 +11,19 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LoginTest extends WebTestCase
 {
+    public function testIfLoginPageWorks(): void
+    {
+        $client = static::createClient();
+
+        /** @var UrlGeneratorInterface */
+        $urlGeneratorInterface = $client->getContainer()->get('router');
+
+        $client->request(Request::METHOD_GET, $urlGeneratorInterface->generate('app_login'));
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+    }
+
     public function testLoginWithGoodCredentials(): void
     {
         $client = static::createClient();
