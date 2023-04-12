@@ -41,7 +41,7 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'The passwords do not match.',
                 'first_options' => [
-                    'label' => 'New password',
+                    'label' => 'Password',
                     'label_attr' => [
                         'class' => 'form-label block text-sm font-medium text-gray-900 dark:text-white'
                     ],
