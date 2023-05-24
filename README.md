@@ -6,6 +6,7 @@
 * [Features](#features)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
+* [Testing](#testing)
 
 ## Technologies Used
 
@@ -82,3 +83,9 @@ Open link in your browser: http://localhost:8000:
 username: admin
 password: password
 ```
+## Testing
+```
+$ ./vendor/phpunit/phpunit/phpunit
+$ php bin/phpunit
+```
+Run the tests using PHPUnit package
